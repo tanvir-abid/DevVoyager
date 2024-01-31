@@ -1,0 +1,182 @@
+{
+  "section-home": {
+    "ownerInfo":{
+        "name": "Khondoker Abid Hasan Tanvir",
+        "designation": "Web Developer & SEO Exoert",
+        "thumbnailURL": "img/profile-pic.png"
+    },
+    "slides": [
+      {
+        "imageSrc": "img/tt.png",
+        "caption": {
+          "title": "Professional Web Designer & Developer",
+          "description": "Meet a professional web designer and developer. With a passion for creating visually appealing and functional websites, our owner brings expertise to every project.",
+          "buttonText": "Resume"
+        }
+      },
+      {
+        "imageSrc": "img/banner1.png",
+        "caption": {
+          "title": "Web Design and Development",
+          "description": "Explore our services in web design and development. We specialize in crafting modern and responsive websites that enhance user experience and meet your business goals.",
+          "buttonText": "Discover More"
+        }
+      },
+      {
+        "imageSrc": "img/banner2.png",
+        "caption": {
+          "title": "Professional SEO Expert",
+          "description": "Boost your online presence with our professional SEO services. Our owner is an expert in search engine optimization, ensuring your website ranks high and attracts the right audience.",
+          "buttonText": "Explore SEO"
+        }
+      }
+    ]
+  },
+  "section-about": {
+    "texts":[
+        "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.",
+        "I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater artist than now. When, while the lovely valley teems with."
+    ]
+  },
+  "section-services": {
+    "services": [
+      {
+        "icon": "<i class='fa-solid fa-gear'></i>",
+        "name": "Web Development",
+        "tagLine": "Crafting digital solutions",
+        "synopsis": "Building modern and responsive websites tailored to your business needs.",
+        "buttonText": "Learn More"
+      },
+      {
+        "icon": "<i class='fa-solid fa-brush'></i>",
+        "name": "Web Design",
+        "tagLine": "Bringing ideas to life",
+        "synopsis": "Creating visually appealing designs for branding, marketing, and more.",
+        "buttonText": "Explore Designs"
+      },
+      {
+        "icon": "<i class='fa-solid fa-search'></i>",
+        "name": "SEO Audit",
+        "tagLine": "Analyzing your online presence",
+        "synopsis": "Comprehensive audit to identify strengths, weaknesses, and opportunities for SEO improvement.",
+        "buttonText": "Audit Now"
+      },
+      {
+        "icon": "<i class='fa-solid fa-chart-line'></i>",
+        "name": "On-Page SEO",
+        "tagLine": "Optimizing website elements",
+        "synopsis": "Implementing on-page SEO strategies to improve the relevance and visibility of your web pages.",
+        "buttonText": "Optimize Pages"
+      },
+      {
+        "icon": "<i class='fa-solid fa-bullseye'></i>",
+        "name": "Niche/Keyword Research",
+        "tagLine": "Targeting the right audience",
+        "synopsis": "In-depth research to discover relevant keywords and niches for better SEO targeting.",
+        "buttonText": "Explore Keywords"
+      },
+      {
+        "icon": "<i class='fa-solid fa-file-alt'></i>",
+        "name": "SEO-Friendly Content Writing",
+        "tagLine": "Creating content that ranks",
+        "synopsis": "Crafting engaging and optimized content to enhance your website’s SEO performance.",
+        "buttonText": "Get Content"
+      }
+    ]
+  },
+  "section-portfolio": {
+    "projects": [
+      {
+        "title": "Project 1",
+        "description": "Description for Project 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "imageSrc": "img/web1.jpg",
+        "tags": ["Web Design", "Frontend", "Responsive"],
+        "category": "Web Design",
+        "projectURL": "https://example.com/project1"
+      },
+      {
+        "title": "Project 2",
+        "description": "Description for Project 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "imageSrc": "img/web2.jpg",
+        "tags": ["Web Development", "Backend", "Database"],
+        "category": "Web",
+        "projectURL": "https://example.com/project2"
+      },
+      {
+        "title": "Project 3",
+        "description": "Description for Project 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "imageSrc": "img/seo1.jpg",
+        "tags": ["Graphic Design", "Print Media"],
+        "category": "SEO",
+        "projectURL": "https://example.com/project3"
+      },
+      {
+        "title": "Project 4",
+        "description": "Description for Project 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "imageSrc": "img/seo2.jpg",
+        "tags": ["SEO", "Content Writing"],
+        "category": "SEO",
+        "projectURL": "https://example.com/project4"
+      },
+      {
+        "title": "Content writing Project 1",
+        "description": "Description for Content Project 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "imageSrc": "img/writing1.jpg",
+        "tags": ["Content Writing", "Blogging", "Creative Writing"],
+        "category": "Content Writing",
+        "projectURL": "https://example.com/content-project1"
+    },
+    {
+        "title": "Content writing Project 2",
+        "description": "Description for Content Project 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "imageSrc": "img/writing2.jpg",
+        "tags": ["SEO-Friendly Content", "Copywriting", "Social Media Content"],
+        "category": "Content Writing",
+        "projectURL": "https://example.com/content-project2"
+    }
+    
+    ]
+  },
+  "section-contact": {
+    "heading": "Stop Scrolling, Start Building",
+    "subheading": "Partner with me to craft your tangible tomorrow.",
+    "contactInfo": {
+        "email": {
+            "icon": "<i class='far fa-envelope'></i>",
+            "value": "info@example.com"
+        },
+        "phone": {
+            "icon": "<i class='fas fa-phone'></i>",
+            "value": "+1 (123) 456-7890"
+        },
+        "address": {
+            "icon": "<i class='fas fa-map-marker-alt'></i>",
+            "value": "123 Main Street, Cityville, Country"
+        }
+    },
+    "socialMedia": [
+        {
+            "icon": "<i class='fab fa-facebook'></i>",
+            "url": "https://www.facebook.com/example",
+            "mediaName": "facebook"
+        },
+        {
+            "icon": "<i class='fa-brands fa-upwork'></i>",
+            "url": "https://upwork.com/",
+            "mediaName": "upwork"
+        },
+        {
+            "icon": "<i class='fab fa-linkedin'></i>",
+            "url": "https://www.linkedin.com/in/example",
+            "mediaName": "linkedin"
+        },
+        {
+            "icon": "<i class='fa-brands fa-facebook-messenger'></i>",
+            "url": "https://www.facebook.com/example",
+            "mediaName": "messenger"
+        }
+    ]
+}
+
+
+}
