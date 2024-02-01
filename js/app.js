@@ -15,8 +15,7 @@ async function getdata() {
 }
 
 document.addEventListener("DOMContentLoaded",async function(){
-    let alldata = await getdata();
-    console.log(alldata);
+    let alldata = await getdata(); //important................
     // generate bubbles //
     const bubbleContainer = document.createElement('div');
     bubbleContainer.classList.add('bubble-container');
@@ -40,7 +39,6 @@ document.addEventListener("DOMContentLoaded",async function(){
 
     // Portfolio Owner Information
     let homeData = alldata['section-home'];
-    console.log(homeData["ownerInfo"].name);
     let ownerPhoto = document.createElement('img');
     ownerPhoto.src = homeData["ownerInfo"].thumbnailURL; // Replace with the actual path
     ownerPhoto.alt = 'Owner Photo';
@@ -48,6 +46,7 @@ document.addEventListener("DOMContentLoaded",async function(){
     let ownerName = document.createElement('p');
     ownerName.className = "owner";
     ownerName.textContent = homeData["ownerInfo"].name;
+    ownerName.setAttribute("user",homeData["ownerInfo"].name);
 
     let ownerDesignation = document.createElement('p');
     ownerDesignation.className = "designation";
@@ -69,7 +68,8 @@ document.addEventListener("DOMContentLoaded",async function(){
 
         const link = document.createElement('a');
         link.href = social.url;
-        link.title = social.mediaName;
+        link.target = '_blank';
+        link.setAttribute("name",social.mediaName);
         link.appendChild(icon);
 
         socialMedia.appendChild(link);
@@ -84,8 +84,10 @@ document.addEventListener("DOMContentLoaded",async function(){
     let menuItems = [
         { text: 'Home', icon: 'fa-solid fa-house-chimney' },
         { text: 'About', icon: 'fa-regular fa-address-card' },
-        { text: 'Services', icon: 'fa-brands fa-buffer' },
+        { text: 'Experience', icon: 'fa-solid fa-award' },
+        { text: 'Skills', icon: 'fas fa-code' },
         { text: 'Portfolio', icon: 'fas fa-briefcase' },
+        { text: 'Services', icon: 'fa-brands fa-buffer' },
         { text: 'Contact', icon: 'fas fa-envelope' }
     ];
     let arrayOfList = [];
@@ -159,7 +161,239 @@ document.addEventListener("DOMContentLoaded",async function(){
     //createServicesSection(alldata['section-services'].services);
     //createPortfolioSection(alldata['section-portfolio'].projects);
     //createContactSection(alldata['section-contact']);
+    //createSkillsSection(alldata['section-skills']);
+    //createEducationAndExperienceSection(alldata['section-experience']);
+    // Call the function with a 2-second delay
+    setTimeout(updateCopyrightYear, 800);
+
 });
+
+
+
+//------------------------------------------//
+// create Education section //
+//--------------------------------------//
+function createEducationAndExperienceSection(data) {
+    // Create education section
+    const educationExperienceSection = document.createElement('section');
+    educationExperienceSection.id = 'section-educationExperience';
+    educationExperienceSection.classList.add('edu&exp-section','appear')
+
+    // Create education container
+    const educationContainer = document.createElement('div');
+    educationContainer.classList.add('education-container');
+
+    const educationHeader = document.createElement('div');
+    educationHeader.classList.add('education-header');
+    const educationHeading = document.createElement('h1');
+    educationHeading.innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${data['data-education'].heading}`;
+    educationHeader.appendChild(educationHeading);
+    educationContainer.appendChild(educationHeader);
+
+    const educationCardContainer = document.createElement('div');
+    educationCardContainer.classList.add('education-card-container');
+    // Sort the experience entries based on their start dates
+    data['data-education'].education.sort((a, b) => {
+        const graduationYearA = new Date(a.graduationYear);
+        const graduationYearB = new Date(b.graduationYear);
+        return graduationYearB - graduationYearA;
+    });
+    // Loop through each education entry
+    data['data-education'].education.forEach(educationEntry => {
+        // Create education card
+        const educationCard = document.createElement('div');
+        educationCard.classList.add('education-card');
+
+        // Create card header
+        const cardHeader = document.createElement('div');
+        cardHeader.classList.add('edu-card-header');
+        cardHeader.setAttribute('year', educationEntry.graduationYear);
+
+        // Create degree element (h1)
+        const degreeElement = document.createElement('h1');
+        degreeElement.textContent = educationEntry.degree;
+
+        // Create graduation year element (span)
+        const graduationYearElement = document.createElement('span');
+        graduationYearElement.textContent = educationEntry.graduationYear;
+
+        // Append elements to card header
+        cardHeader.appendChild(degreeElement);
+        cardHeader.appendChild(graduationYearElement);
+
+        // Create card body
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('edu-card-body');
+        
+        const eduDetails = document.createElement('div');
+        eduDetails.classList.add("edu-details");
+        const detailDivHeading = document.createElement('h3');
+        detailDivHeading.innerHTML = `<strong>Details:</strong>`;
+        eduDetails.appendChild(detailDivHeading);
+        // Create university element
+        const universityElement = document.createElement('p');
+        universityElement.innerHTML = `<strong><i class="fa-solid fa-building-columns"></i> University:</strong> ${educationEntry.university}`;
+        // Create university element
+        const subjectElement = document.createElement('p');
+        subjectElement.innerHTML = `<strong><i class="fa-solid fa-building-columns"></i> Subject:</strong> ${educationEntry.subject}`;
+        // Create university element
+        const passedElement = document.createElement('p');
+        passedElement.innerHTML = `<strong><i class="fa-regular fa-calendar-days"></i> Passed On:</strong> ${educationEntry.graduationYear}`;
+
+        // Create location element
+        const locationElement = document.createElement('p');
+        locationElement.innerHTML = `<strong><i class="fa-solid fa-earth-asia"></i> Location:</strong> ${educationEntry.location}`;
+
+        // Append elements to card body
+        eduDetails.appendChild(universityElement);
+        eduDetails.appendChild(subjectElement);
+        eduDetails.appendChild(passedElement);
+        eduDetails.appendChild(locationElement);
+        cardBody.appendChild(eduDetails);
+
+        // Check if "activity" property exists
+        if (educationEntry.activity && educationEntry.activity.length > 0) {
+            // Create activity container div
+            const activityContainer = document.createElement('div');
+            activityContainer.classList.add('activity-container');
+            const activityHeading = document.createElement('h3');
+            activityHeading.innerHTML = `<strong>Extra Curricular Activities:</strong>`;
+            activityContainer.appendChild(activityHeading);
+            // Loop through activities and create paragraphs
+            educationEntry.activity.forEach(activity => {
+                const activityElement = document.createElement('p');
+                activityElement.innerHTML = `<b><i class="fa-solid fa-check"></i></b> ${activity}`;
+                activityContainer.appendChild(activityElement);
+            });
+
+            // Append activity container to card body
+            cardBody.appendChild(activityContainer);
+            cardBody.classList.add('two-column');
+        }
+        // Append card header and body to the education card
+        educationCard.appendChild(cardHeader);
+        educationCard.appendChild(cardBody);
+
+        // Append education card to the education container
+        educationCardContainer.appendChild(educationCard);
+    });
+
+    // Append education container to the education section
+    educationContainer.appendChild(educationCardContainer);
+    educationExperienceSection.appendChild(educationContainer);
+//---------------------------------------------------------------------//
+    // Create experience container
+    const experienceContainer = document.createElement('div');
+    experienceContainer.classList.add('experience-container');
+
+    const experienceHeader = document.createElement('div');
+    experienceHeader.classList.add('experience-header');
+    const experienceHeading = document.createElement('h1');
+    experienceHeading.innerHTML = `<i class="fa-solid fa-chart-line"></i> ${data['data-experience'].heading}`;
+    experienceHeader.appendChild(experienceHeading);
+    experienceContainer.appendChild(experienceHeader);
+
+    const experienceCardContainer = document.createElement('div');
+    experienceCardContainer.classList.add('experience-card-container');
+
+    data['data-experience'].experience.sort((a, b) => {
+        const startDateA = new Date(a.startDate);
+        const startDateB = new Date(b.startDate);
+        return startDateB - startDateA;
+    });
+    // Loop through each experience entry
+    data['data-experience'].experience.forEach(experienceEntry => {
+        // Create experience card
+        const experienceCard = document.createElement('div');
+        experienceCard.classList.add('experience-card');
+
+        // Create card header
+        const cardHeader = document.createElement('div');
+        cardHeader.classList.add('exp-card-header');
+        const startDate = new Date(experienceEntry.startDate);
+        cardHeader.setAttribute('year', startDate.getFullYear().toString());
+
+        // Create position element (h1)
+        const positionElement = document.createElement('h1');
+        positionElement.textContent = experienceEntry.position;
+
+        // Create graduation year element (span)
+        const startYearElement = document.createElement('span');
+        startYearElement.textContent = `Started: ${experienceEntry.startDate}`;
+
+        // Append elements to card header
+        cardHeader.appendChild(positionElement);
+        cardHeader.appendChild(startYearElement);
+
+        // Create card body
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('exp-card-body');
+
+        const expDetails = document.createElement('div');
+        expDetails.classList.add("exp-details");
+        const detailDivHeading = document.createElement('h3');
+        detailDivHeading.innerHTML = `<strong>Details</strong>`;
+        expDetails.appendChild(detailDivHeading);
+        // Create company element (p)
+        const companyElement = document.createElement('p');
+        companyElement.innerHTML = `<strong><i class="fa-regular fa-building"></i> Company:</strong> ${experienceEntry.company}`;
+        // Create start date element (p)
+        const startDateElement = document.createElement('p');
+        startDateElement.innerHTML = `<strong><i class="fa-regular fa-circle-play"></i> Started On:</strong> ${experienceEntry.startDate}`;
+        // Create end date element (p)
+        const endDateElement = document.createElement('p');
+        endDateElement.innerHTML = `<strong><i class="fa-solid fa-hourglass-end"></i> Ended On:</strong> ${experienceEntry.endDate}`;
+
+        // Create location element
+        const locationElement = document.createElement('p');
+        locationElement.innerHTML = `<strong><i class="fa-solid fa-map-location"></i> Location:</strong> ${experienceEntry.location}`;
+        // Append elements to card body
+        expDetails.appendChild(companyElement);
+        expDetails.appendChild(startDateElement);
+        expDetails.appendChild(endDateElement);
+        expDetails.appendChild(locationElement);
+        cardBody.appendChild(expDetails);
+        // Create responsibilities element
+        // Check if "activity" property exists
+        if (experienceEntry.responsibilities && experienceEntry.responsibilities.length > 0) {
+            // Create activity container div
+            const responsibilityContainer = document.createElement('div');
+            responsibilityContainer.classList.add('responsibility-container');
+            const responsibilityHeading = document.createElement('h3');
+            responsibilityHeading.innerHTML = `<strong>Responsibilities</strong>`;
+            responsibilityContainer.appendChild(responsibilityHeading);
+            // Loop through activities and create paragraphs
+            experienceEntry.responsibilities.forEach(responsibility => {
+                const responsibilityElement = document.createElement('p');
+                responsibilityElement.innerHTML = `<b><i class="fa-solid fa-check"></i></b> ${responsibility}`;
+                responsibilityContainer.appendChild(responsibilityElement);
+            });
+
+            // Append activity container to card body
+            cardBody.appendChild(responsibilityContainer);
+            cardBody.classList.add('two-column');
+        }
+
+        // Append card header and body to the experience card
+        experienceCard.appendChild(cardHeader);
+        experienceCard.appendChild(cardBody);
+
+        // Append experience card to the experience container
+        experienceCardContainer.appendChild(experienceCard);
+    });
+
+    // Append experience container to the experience section
+    experienceContainer.appendChild(experienceCardContainer);
+    educationExperienceSection.appendChild(experienceContainer);
+
+    // Append both education and experience sections to the main container or body
+    document.getElementById('main-container').appendChild(educationExperienceSection);
+}
+
+
+
+
+
 
 //------------------------------------------//
 // create slide show //
@@ -347,6 +581,9 @@ function createServicesSection(servicesArray) {
     servicesSection.classList.add("servies","appear");
     servicesSection.id = 'section-services';
 
+    const serviceHeader = document.createElement('h1');
+    serviceHeader.textContent = "Services";
+    servicesSection.appendChild(serviceHeader);
     // Create container for services
     const servicesContainer = document.createElement('div');
     servicesContainer.classList.add('services-container');
@@ -398,11 +635,107 @@ function createServicesSection(servicesArray) {
 }
 
 //------------------------------------------//
+// create skills section //
+//--------------------------------------//
+function createSkillsSection(skillData) {
+    // Create skills section
+    const skillsSection = document.createElement('section');
+    skillsSection.classList.add('skill-section','appear');
+    skillsSection.id = 'section-skills';
+
+    // Heading
+    const heading = document.createElement('h1');
+    heading.textContent = skillData.heading;
+
+    // Append heading to the skills section
+    skillsSection.appendChild(heading);
+
+    const skillGroupContainer = document.createElement('div');
+    skillGroupContainer.classList.add('skill-group-container');
+
+    // Loop through each skill category
+    skillData.skills.forEach(skillCategory => {
+        // Create skill group div
+        const skillGroupDiv = document.createElement('div');
+        skillGroupDiv.classList.add('skill-group');
+
+        // Create skill category heading
+        const skillCategoryHeading = document.createElement('h3');
+        skillCategoryHeading.textContent = skillCategory.category;
+        // Append skill category heading to skill group div
+        skillGroupDiv.appendChild(skillCategoryHeading);
+
+        // Loop through each skill in the category
+        skillCategory.items.forEach(skill => {
+            // Create skill div
+            const skillDiv = document.createElement('div');
+            skillDiv.classList.add('skill');
+
+            // Create skill name paragraph
+            const skillName = document.createElement('p');
+            skillName.textContent = skill.name;
+
+            // Create skill bar div
+            const skillBarDiv = document.createElement('div');
+            skillBarDiv.classList.add('bar');
+
+            // Create skill level bar div
+            const skillLevelBarDiv = document.createElement('div');
+            skillLevelBarDiv.classList.add('skill-bar');
+
+            // Create skill level span with data-level attribute
+            const skillLevelSpan = document.createElement('span');
+            skillLevelSpan.classList.add('skill-level');
+            skillLevelSpan.setAttribute('data-level', skill.level);
+            
+            
+            // Set initial width to 0
+            skillLevelBarDiv.style.width = '0';
+            
+            // Use setInterval to gradually increase the width
+            let currentWidth = 0;
+            const targetWidth = skill.level; // Set the target width based on the skill level
+            
+            const intervalId = setInterval(() => {
+                currentWidth++;
+            
+                // Update the width of the skill bar
+                skillLevelBarDiv.style.width = `${currentWidth}%`;
+                skillLevelSpan.textContent = `${currentWidth}%`;
+            
+                // Check if the target width is reached
+                if (currentWidth >= targetWidth) {
+                    clearInterval(intervalId); // Stop the interval
+                }
+            }, 30); // Adjust the interval duration as needed (lower value for faster increase)
+
+            // Append skill level span to skill level bar div
+            skillLevelBarDiv.appendChild(skillLevelSpan);
+
+            // Append skill level bar div to skill bar div
+            skillBarDiv.appendChild(skillLevelBarDiv);
+
+            // Append skill name and skill bar div to skill div
+            skillDiv.appendChild(skillName);
+            skillDiv.appendChild(skillBarDiv);
+
+            // Append skill div to skill group div
+            skillGroupDiv.appendChild(skillDiv);
+            skillGroupContainer.appendChild(skillGroupDiv);
+        });
+    });
+    // Append skill group div to the skills section
+    skillsSection.appendChild(skillGroupContainer);
+    // Append the skills section to the main container
+    document.getElementById('main-container').appendChild(skillsSection);
+}
+//------------------------------------------//
 // create Portfolio section //
 //--------------------------------------//
 function createPortfolioSection(projects) {
     // Create portfolio section
     const portfolioSection = document.createElement('section');
+    portfolioSection.classList.add('portfolio-container','appear');
     portfolioSection.id = 'section-portfolio';
 
     // Create tabs container
@@ -410,12 +743,22 @@ function createPortfolioSection(projects) {
     tabsContainer.classList.add('tabs-container');
 
     // Create tabs
-    const tabs = ['All', 'Web Design', 'SEO', 'Content Writing'];
+    const tabs = ['All'];
+
+    // Populate uniqueCategories array with categories from projects
+    projects.forEach(project => {
+        if (!tabs.includes(project.category)) {
+            tabs.push(project.category);
+        }
+    });
+
     let arrayOfTabs =[];
 
     tabs.forEach((tabName,index) => {
         const tab = document.createElement('div');
-        tab.textContent = tabName;
+        // Extract the last word from tabName if it contains multiple words
+        const lastWord = tabName.split(/\s+/).pop();
+        tab.textContent = lastWord ? lastWord : tabName;
         tab.classList.add('tab');
         if(index == 0){tab.classList.add('active');}
         tabsContainer.appendChild(tab);
@@ -521,6 +864,11 @@ function createPortfolioSection(projects) {
         viewProjectBtn.type = 'button';
         viewProjectBtn.textContent = 'View Project';
 
+        // Add event listener to the button
+        viewProjectBtn.addEventListener('click', () => {
+            displayProject(project);
+        });
+
         cardFooter.appendChild(viewProjectBtn);
 
         // Append card elements to the card
@@ -542,7 +890,59 @@ function createPortfolioSection(projects) {
     document.getElementById('main-container').appendChild(portfolioSection);
 }
 
+function displayProject(projectData) {
+    // Create modal container
+    const modalContainer = document.createElement('div');
+    modalContainer.classList.add('modal-container');
 
+    // Create modal content
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+
+    // Create modal header
+    const modalHeader = document.createElement('div');
+    modalHeader.classList.add('modal-header');
+
+    // Project name in the header
+    const projectName = document.createElement('h2');
+    projectName.textContent = projectData.title;
+
+    // Close button in the header
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    closeButton.addEventListener('click', () => {
+        // Close the modal when the close button is clicked
+        modalContainer.remove();
+    });
+
+    // Append elements to the modal header
+    modalHeader.appendChild(projectName);
+    modalHeader.appendChild(closeButton);
+
+    // Create modal body
+    const modalBody = document.createElement('div');
+    modalBody.classList.add('modal-body');
+
+    // Load projectURL in an iframe in the body
+    const iframe = document.createElement('iframe');
+    iframe.src = projectData.projectURL;
+    iframe.style.width = '100%';
+    iframe.style.height = '70vh';
+
+    // Append elements to the modal body
+    modalBody.appendChild(iframe);
+
+    // Append header and body to the modal content
+    modalContent.appendChild(modalHeader);
+    modalContent.appendChild(modalBody);
+
+    // Append modal content to the modal container
+    modalContainer.appendChild(modalContent);
+
+    // Append the modal container to the body
+    document.body.appendChild(modalContainer);
+}
 //------------------------------------------//
 // create contact section //
 //--------------------------------------//
@@ -590,6 +990,8 @@ function createContactSection(contactData) {
 
         const link = document.createElement('a');
         link.href = social.url;
+        link.target = '_blank';
+        link.setAttribute("name",social.mediaName);
         link.appendChild(icon);
 
         socialMedia.appendChild(link);
@@ -680,11 +1082,8 @@ function handleMenuItemClicks(sectionID, previousSection,sectionData) {
     if (previousSection.classList.contains("disappear")) {
         previousSection.classList.remove("disappear");
     }
-
     // Add "disappear" class to the previous section
     previousSection.classList.add("disappear");
-    // Remove the previous section from the main container after 0.5s
-    console.log(sectionData);
     setTimeout(function () {
         mainContainer.removeChild(previousSection);
             // Handle click actions based on the menu item id
@@ -694,10 +1093,29 @@ function handleMenuItemClicks(sectionID, previousSection,sectionData) {
                 createAboutContainer(sectionData.texts);
             }else if(sectionID === "services"){
                 createServicesSection(sectionData.services);
+            }else if(sectionID === "skills"){
+                createSkillsSection(sectionData);
             }else if(sectionID == "portfolio"){
                 createPortfolioSection(sectionData.projects);
             }else if(sectionID == "contact"){
                 createContactSection(sectionData);
+            }else if(sectionID == "experience"){
+                createEducationAndExperienceSection(sectionData);
             }
     }, 500);
 }
+
+function updateCopyrightYear() {
+    // Create copyright div
+    const copyrightDiv = document.createElement('div');
+    copyrightDiv.classList.add('copyright');
+    // Get the current year
+    const userName = document.querySelector(".thumbnail-container .owner").getAttribute('user');
+    // Add content to the copyright div
+    copyrightDiv.innerHTML = `${userName} &copy; ${new Date().getFullYear()}. All rights reserved.`;
+
+    // Append the copyright div to the sidebar
+    const sidebarElement = document.getElementById('sidebar');
+    document.body.appendChild(copyrightDiv);
+}
+

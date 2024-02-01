@@ -87,12 +87,12 @@
   "section-portfolio": {
     "projects": [
       {
-        "title": "Project 1",
+        "title": "Convertify-unit-and-number-base-converter",
         "description": "Description for Project 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "imageSrc": "img/web1.jpg",
         "tags": ["Web Design", "Frontend", "Responsive"],
         "category": "Web Design",
-        "projectURL": "https://example.com/project1"
+        "projectURL": "https://tanvir-abid.github.io/Convertify-unit-and-number-base-converter/"
       },
       {
         "title": "Project 2",
@@ -137,6 +137,104 @@
     
     ]
   },
+  "section-experience":{
+    "data-education": {
+      "heading": "Academic Qualifications",
+      "education": [
+        {
+          "degree": "Bachelor of Science in Computer Science",
+          "university": "University of Example",
+          "location": "City, Country",
+          "graduationYear": "2022",
+          "subject": "english"
+        },
+        {
+          "degree": "Master of Science in Data Science",
+          "university": "Another University",
+          "location": "City, Country",
+          "graduationYear": "2024",
+          "subject": "bangla",
+          "activity": [
+            "Research projects in Machine Learning",
+            "Data analysis and visualization workshops",
+            "Collaboration with industry professionals",
+            "Internship in a data-driven company"
+          ]
+        }        
+      ]
+    },
+    "data-experience": {
+      "heading": "Professional Experience",
+      "experience": [
+        {
+          "position": "Software Engineer",
+          "company": "Tech Solutions Inc.",
+          "location": "City, Country",
+          "startDate": "2022-06-01",
+          "endDate": "2023-12-31",
+          "responsibilities": [
+            "Developed and maintained web applications.",
+            "Collaborated with cross-functional teams."
+          ]
+        },
+        {
+          "position": "Data Analyst Intern",
+          "company": "Data Insights Co.",
+          "location": "City, Country",
+          "startDate": "2021-01-15",
+          "endDate": "2021-05-15",
+          "responsibilities": [
+            "Assisted in analyzing large datasets.",
+            "Created visualizations to communicate insights."
+          ]
+        }
+      ]
+    }
+    
+  },  
+  "section-skills": {
+    "heading": "Skills You May Looking For",
+    "skills": [
+      {
+        "category": "Programming Languages",
+        "items": [
+          { "name": "JavaScript", "level": 80 },
+          { "name": "Python", "level": 70 },
+          { "name": "Java", "level": 60 }
+        ]
+      },
+      {
+        "category": "Web Development",
+        "items": [
+          { "name": "HTML", "level": 100 },
+          { "name": "CSS", "level": 90 },
+          { "name": "Node.js", "level": 88 }
+        ]
+      },
+      {
+        "category": "Database",
+        "items": [
+          { "name": "MySQL", "level": 70 },
+          { "name": "MongoDB", "level": 70 }
+        ]
+      },
+      {
+        "category": "Version Control",
+        "items": [
+          { "name": "Git", "level": 70 },
+          { "name": "GitHub", "level": 70 }
+        ]
+      },
+      {
+        "category": "Other",
+        "items": [
+          { "name": "Responsive Design", "level": 90 },
+          { "name": "UI/UX Design", "level": 70 },
+          { "name": "Problem Solving", "level": 80 }
+        ]
+      }
+    ]
+  },
   "section-contact": {
     "heading": "Stop Scrolling, Start Building",
     "subheading": "Partner with me to craft your tangible tomorrow.",
@@ -156,6 +254,11 @@
     },
     "socialMedia": [
         {
+            "icon": "<i class='fa-brands fa-github'></i>",
+            "url": "https://github.com/tanvir-abid",
+            "mediaName": "github"
+        },
+        {
             "icon": "<i class='fab fa-facebook'></i>",
             "url": "https://www.facebook.com/example",
             "mediaName": "facebook"
@@ -174,6 +277,11 @@
             "icon": "<i class='fa-brands fa-facebook-messenger'></i>",
             "url": "https://www.facebook.com/example",
             "mediaName": "messenger"
+        },
+        {
+            "icon": "<i class='fa-brands fa-whatsapp'></i>",
+            "url": "https://www.whatsapp.com/example",
+            "mediaName": "whatsapp"
         }
     ]
 }
