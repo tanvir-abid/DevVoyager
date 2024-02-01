@@ -41,42 +41,42 @@
   "section-services": {
     "services": [
       {
-        "icon": "<i class='fa-solid fa-gear'></i>",
+        "icon": "fa-solid fa-gear",
         "name": "Web Development",
         "tagLine": "Crafting digital solutions",
         "synopsis": "Building modern and responsive websites tailored to your business needs.",
         "buttonText": "Learn More"
       },
       {
-        "icon": "<i class='fa-solid fa-brush'></i>",
+        "icon": "fa-solid fa-brush",
         "name": "Web Design",
         "tagLine": "Bringing ideas to life",
         "synopsis": "Creating visually appealing designs for branding, marketing, and more.",
         "buttonText": "Explore Designs"
       },
       {
-        "icon": "<i class='fa-solid fa-search'></i>",
+        "icon": "fa-solid fa-search",
         "name": "SEO Audit",
         "tagLine": "Analyzing your online presence",
         "synopsis": "Comprehensive audit to identify strengths, weaknesses, and opportunities for SEO improvement.",
         "buttonText": "Audit Now"
       },
       {
-        "icon": "<i class='fa-solid fa-chart-line'></i>",
+        "icon": "fa-solid fa-chart-line",
         "name": "On-Page SEO",
         "tagLine": "Optimizing website elements",
         "synopsis": "Implementing on-page SEO strategies to improve the relevance and visibility of your web pages.",
         "buttonText": "Optimize Pages"
       },
       {
-        "icon": "<i class='fa-solid fa-bullseye'></i>",
+        "icon": "fa-solid fa-bullseye",
         "name": "Niche/Keyword Research",
         "tagLine": "Targeting the right audience",
         "synopsis": "In-depth research to discover relevant keywords and niches for better SEO targeting.",
         "buttonText": "Explore Keywords"
       },
       {
-        "icon": "<i class='fa-solid fa-file-alt'></i>",
+        "icon": "fa-solid fa-file-alt",
         "name": "SEO-Friendly Content Writing",
         "tagLine": "Creating content that ranks",
         "synopsis": "Crafting engaging and optimized content to enhance your website’s SEO performance.",

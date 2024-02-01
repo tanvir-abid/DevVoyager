@@ -156,9 +156,9 @@ document.addEventListener("DOMContentLoaded",async function(){
 
     document.querySelector('main').appendChild(menubar);
     //---------------------------------------------//
-    createSlideshow(alldata["section-home"].slides);
+    // createSlideshow(alldata["section-home"].slides);
     //createAboutContainer(alldata['section-about'].texts);
-    //createServicesSection(alldata['section-services'].services);
+    createServicesSection(alldata['section-services'].services);
     //createPortfolioSection(alldata['section-portfolio'].projects);
     //createContactSection(alldata['section-contact']);
     //createSkillsSection(alldata['section-skills']);
@@ -589,14 +589,16 @@ function createServicesSection(servicesArray) {
     servicesContainer.classList.add('services-container');
 
     // Loop through each service object in the array
-    servicesArray.forEach(serviceData => {
+    servicesArray.forEach((serviceData,index) => {
         // Create service div
         const serviceDiv = document.createElement('div');
         serviceDiv.classList.add('service');
 
         // Create service icon element
+        let classArray = ["spin","swing","search","flip","heart-beat",'bounce'];
         const serviceIcon = document.createElement('span');
-        serviceIcon.innerHTML= serviceData.icon;
+        serviceIcon.innerHTML= `<i class="${serviceData.icon} ${classArray[index]}"></i>`;
+        //serviceIcon.classList.add(classArray[index]);
 
         // Create service name element
         const serviceName = document.createElement('h2');
