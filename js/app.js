@@ -156,9 +156,9 @@ document.addEventListener("DOMContentLoaded",async function(){
 
     document.querySelector('main').appendChild(menubar);
     //---------------------------------------------//
-    // createSlideshow(alldata["section-home"].slides);
+    createSlideshow(alldata["section-home"].slides);
     //createAboutContainer(alldata['section-about'].texts);
-    createServicesSection(alldata['section-services'].services);
+    //createServicesSection(alldata['section-services'].services);
     //createPortfolioSection(alldata['section-portfolio'].projects);
     //createContactSection(alldata['section-contact']);
     //createSkillsSection(alldata['section-skills']);
