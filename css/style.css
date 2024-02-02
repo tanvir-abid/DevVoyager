@@ -756,7 +756,7 @@ button:hover {
 
 @media screen and (max-width:768px) {
     #section-services {
-        margin: 10px;
+        margin: 0px;
         padding: 10px;
     }
 }
@@ -828,6 +828,165 @@ button:hover {
     margin-bottom: 15px;
     color: #01502f;
 }
+/*----------------------------*/
+/*style for plan cards and div in the modal*/
+/*--------------------------------------*/
+/* Styles for Service Plans */
+.plan-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    overflow: auto;
+}
+
+.plan-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0px 3px 10px rgb(0,0,0,0.4);
+    background-color: rgb(85, 88, 255,0.2);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.plan-card:hover {
+    transform: scale(1.02);
+}
+
+.plan-header {
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.plan-header h3 {
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.plan-body {
+    padding: 15px;
+    flex: 1;
+}
+
+.plan-body ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+}
+
+.plan-body li {
+    padding:  10px;
+    border-bottom: 1px solid #fff;
+}
+
+.plan-body li:last-child {
+    border-bottom: none;
+}
+
+.plan-footer {
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+}
+
+.plan-footer button {
+    width: 90%;
+    padding: 10px 20px;
+    border: 1px solid rgb(255,255,255,0.5);
+    background-color: #e73c7e;
+}
+.plan-footer button:hover {
+    background-color: rgb(85, 88, 255);
+}
+.service-form-column {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+}
+/* Style for selected plan details container */
+.selected-plan-details {
+    padding: 0 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 0 20px;
+}
+
+.selected-plan-details p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #fff;
+    text-transform: capitalize;
+    background-color: rgb(225,225,225,0.2);
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.service-form-column form{
+    width: 90%;
+    margin-top: 10px;
+    border-top: 1px solid #fff;
+    padding-top: 15px;
+}
+
+.service-form-container{
+    background-color: rgba(255,255,255, 0.3);
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+.service-form-container h3,
+.service-form-container p{
+    color: #fff;
+    padding: 5px;
+}
+
+/* Responsive Columns */
+.column2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.column3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.column4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.plan-modal{
+    width: 90%;
+}
+/* Add more .columnX classes as needed */
+@media (max-width: 768px) {
+    .plan-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .column2,
+    .column3,
+    .column4 {
+        grid-template-columns: 1fr;
+    }
+
+    .plan-modal{
+        width: 97%;
+    }
+    .service-form-column form{
+        width: 100%;
+    }
+    .service-form-container{
+        width: 80%;
+    }
+}
+
+
 
 /*----------------------------*/
 /*style for education section*/
@@ -1497,7 +1656,14 @@ form button{
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    transition: all 0.3s ease;
+    animation: faded 0.3s ease-in;
 }
+@keyframes faded {
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+
 
 /* Modal Content */
 .modal-content {
@@ -1505,8 +1671,26 @@ form button{
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     overflow: hidden;
+    transition: all 0.5s ease;
 }
 
+.popup{
+    animation: popup 0.5s ease-in;
+}
+
+@keyframes popup {
+    from{transform: scale(0);opacity: 0;}
+    to{transform: scale(1);opacity: 1;}
+}
+
+.popOut{
+    animation: popOut 0.5s ease-in;
+}
+
+@keyframes popOut {
+    from{transform: scale(1);opacity: 1;}
+    to{transform: scale(0);opacity: 0;}
+}
 /* Modal Header */
 .modal-header {
     padding: 15px;
@@ -1520,11 +1704,24 @@ form button{
     border-top-right-radius: 8px;
 }
 
+.title-container{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.title-container span{
+    font-size: 25px;
+    cursor: pointer;
+}
+
 /* Modal Body */
 .modal-body {
     padding: 5px;
     background: rgba(225,255,255, 0.2);
     backdrop-filter: blur(5px);
+    scrollbar-width: thin;
+    scrollbar-color: #e73c7e rgba(0, 0, 0, 0);
 }
 /* Iframe Styles */
 .modal-body iframe {
@@ -1550,6 +1747,15 @@ form button{
     transform: rotate(90deg);
 }
 
+@media screen and (max-width: 768px) {
+    .modal-content{
+        width: 95%;
+    }
+    .modal-body{
+        max-height: 700px;
+        overflow-y: auto;
+    }
+}
 /*---------------------------*/
 .copyright {
     position: fixed;
@@ -1665,3 +1871,4 @@ form button{
 .flip {
   animation: flipAnimation 2s ease-in-out infinite;
 }
+

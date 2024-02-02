@@ -40,47 +40,154 @@
   },
   "section-services": {
     "services": [
-      {
-        "icon": "fa-solid fa-gear",
-        "name": "Web Development",
-        "tagLine": "Crafting digital solutions",
-        "synopsis": "Building modern and responsive websites tailored to your business needs.",
-        "buttonText": "Learn More"
-      },
+        {
+          "icon": "fa-solid fa-gear",
+          "name": "Web Development",
+          "tagLine": "Crafting digital solutions",
+          "synopsis": "Building modern and responsive websites tailored to your business needs.",
+          "buttonText": "Learn More",
+          "plans": {
+              "basic": {
+                  "price": "$500",
+                  "features": ["5 Pages", "Basic Design", "Contact Form", "Mobile Optimization"],
+                  "planID": "1234"
+              },
+              "standard": {
+                  "price": "$800",
+                  "features": ["10 Pages", "Custom Design", "Contact Form", "Blog Integration", "SEO Optimization"],
+                  "planID": "5678"
+              },
+              "professional": {
+                  "price": "$1200",
+                  "features": ["15 Pages", "Premium Design", "Contact Form", "Blog Integration", "E-commerce Functionality", "Performance Optimization"],
+                  "planID": "91011"
+              },
+              "enterprise": {
+                  "price": "$2500",
+                  "features": ["Unlimited Pages", "Bespoke Design", "Contact Form", "Blog Integration", "E-commerce Functionality","Blog Integration", "E-commerce Functionality","Blog Integration", "E-commerce Functionality", "Custom Web Applications"],
+                  "planID": "121314"
+              }
+          }
+      },    
       {
         "icon": "fa-solid fa-brush",
         "name": "Web Design",
         "tagLine": "Bringing ideas to life",
         "synopsis": "Creating visually appealing designs for branding, marketing, and more.",
-        "buttonText": "Explore Designs"
+        "buttonText": "Explore Designs",
+        "plans": {
+          "basic": {
+            "price": "$300",
+            "features": ["Basic Template", "1 Revision"],
+            "planID":"1234"
+          },
+          "professional": {
+            "price": "$600",
+            "features": ["Custom Design", "2 Revisions", "Responsive Layout"],
+            "planID":"1234"
+          },
+          "premium": {
+            "price": "$1200",
+            "features": ["Custom Design", "Unlimited Revisions", "Responsive Layout", "Source Files"],
+            "planID":"1234"
+          }
+        }
       },
       {
         "icon": "fa-solid fa-search",
         "name": "SEO Audit",
         "tagLine": "Analyzing your online presence",
         "synopsis": "Comprehensive audit to identify strengths, weaknesses, and opportunities for SEO improvement.",
-        "buttonText": "Audit Now"
+        "buttonText": "Audit Now",
+        "plans": {
+          "basic": {
+            "price": "$100",
+            "features": ["Website Analysis", "Basic Report"],
+            "planID":"1234"
+          },
+          "professional": {
+            "price": "$250",
+            "features": ["Website Analysis", "Detailed Report", "Actionable Recommendations"],
+            "planID":"1234"
+          },
+          "premium": {
+            "price": "$500",
+            "features": ["Website Analysis", "Detailed Report", "Actionable Recommendations", "Consultation Session"],
+            "planID":"1234"
+          }
+        }
       },
       {
         "icon": "fa-solid fa-chart-line",
         "name": "On-Page SEO",
         "tagLine": "Optimizing website elements",
         "synopsis": "Implementing on-page SEO strategies to improve the relevance and visibility of your web pages.",
-        "buttonText": "Optimize Pages"
+        "buttonText": "Optimize Pages",
+        "plans": {
+          "basic": {
+            "price": "$150",
+            "features": ["Keyword Optimization", "Meta Tags", "Content Optimization"],
+            "planID":"1234"
+          },
+          "professional": {
+            "price": "$300",
+            "features": ["Keyword Optimization", "Meta Tags", "Content Optimization", "Image Optimization", "Internal Linking"],
+            "planID":"1234"
+          },
+          "premium": {
+            "price": "$600",
+            "features": ["Keyword Optimization", "Meta Tags", "Content Optimization", "Image Optimization", "Internal Linking", "Schema Markup"],
+            "planID":"1234"
+          }
+        }
       },
       {
         "icon": "fa-solid fa-bullseye",
         "name": "Niche/Keyword Research",
         "tagLine": "Targeting the right audience",
         "synopsis": "In-depth research to discover relevant keywords and niches for better SEO targeting.",
-        "buttonText": "Explore Keywords"
+        "buttonText": "Explore Keywords",
+        "plans": {
+          "basic": {
+            "price": "$50",
+            "features": ["Basic Keyword Research"],
+            "planID":"1234"
+          },
+          "professional": {
+            "price": "$150",
+            "features": ["Comprehensive Keyword Research", "Competitor Analysis"],
+            "planID":"1234"
+          },
+          "premium": {
+            "price": "$300",
+            "features": ["Comprehensive Keyword Research", "Competitor Analysis", "Keyword Difficulty Analysis"],
+            "planID":"1234"
+          }
+        }
       },
       {
         "icon": "fa-solid fa-file-alt",
         "name": "SEO-Friendly Content Writing",
         "tagLine": "Creating content that ranks",
         "synopsis": "Crafting engaging and optimized content to enhance your website’s SEO performance.",
-        "buttonText": "Get Content"
+        "buttonText": "Get Content",
+        "plans": {
+          "basic": {
+            "price": "$100",
+            "features": ["5 Articles", "Standard Quality"],
+            "planID":"1234"
+          },
+          "professional": {
+            "price": "$250",
+            "features": ["10 Articles", "High Quality", "Keyword Optimization"],
+            "planID":"1234"
+          },
+          "premium": {
+            "price": "$500",
+            "features": ["20 Articles", "Premium Quality", "Keyword Optimization", "SEO Formatting"],
+            "planID":"1234"
+          }
+        }
       }
     ]
   },

@@ -617,6 +617,9 @@ function createServicesSection(servicesArray) {
         // Create service button element
         const serviceButton = document.createElement('button');
         serviceButton.textContent = serviceData.buttonText;
+        serviceButton.addEventListener('click', function(){
+            displayProject(serviceData);
+        });
 
         // Append elements to the service div
         serviceDiv.appendChild(serviceIcon);
@@ -893,6 +896,7 @@ function createPortfolioSection(projects) {
 }
 
 function displayProject(projectData) {
+    console.log(projectData);
     // Create modal container
     const modalContainer = document.createElement('div');
     modalContainer.classList.add('modal-container');
@@ -905,9 +909,21 @@ function displayProject(projectData) {
     const modalHeader = document.createElement('div');
     modalHeader.classList.add('modal-header');
 
-    // Project name in the header
-    const projectName = document.createElement('h2');
-    projectName.textContent = projectData.title;
+    // Header content based on data type
+    let headerContent;
+
+    if (projectData.hasOwnProperty('title')) {
+        // Portfolio data
+        headerContent = `<h2>${projectData.title}</h2>`;
+    } else if (projectData.hasOwnProperty('name')) {
+        // Service data
+        headerContent = `<h2>${projectData.name}</h2>`;
+    }
+
+    // Project name or service name in the header
+    const projectName = document.createElement('div');
+    projectName.className = "title-container";
+    projectName.innerHTML = headerContent;
 
     // Close button in the header
     const closeButton = document.createElement('button');
@@ -915,7 +931,13 @@ function displayProject(projectData) {
     closeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
     closeButton.addEventListener('click', () => {
         // Close the modal when the close button is clicked
-        modalContainer.remove();
+        if(modalContent.classList.contains("popup")){
+            modalContent.classList.remove("popup");
+        }
+        modalContent.classList.add('popOut');
+        setTimeout(() => {
+            modalContainer.remove();
+        },500)
     });
 
     // Append elements to the modal header
@@ -926,14 +948,24 @@ function displayProject(projectData) {
     const modalBody = document.createElement('div');
     modalBody.classList.add('modal-body');
 
-    // Load projectURL in an iframe in the body
-    const iframe = document.createElement('iframe');
-    iframe.src = projectData.projectURL;
-    iframe.style.width = '100%';
-    iframe.style.height = '70vh';
+    // Body content based on data type
+    let bodyContent;
+
+    if (projectData.hasOwnProperty('projectURL')) {
+        // Portfolio data
+        const iframe = document.createElement('iframe');
+        iframe.src = projectData.projectURL;
+        iframe.style.width = '100%';
+        iframe.style.height = '70vh';
+        bodyContent = iframe;
+    } else if (projectData.hasOwnProperty('plans')) {
+        // Service data
+        bodyContent = createServicePlansHTML(projectData.plans, projectName,modalBody);
+        modalContent.classList.add('plan-modal');
+    }
 
     // Append elements to the modal body
-    modalBody.appendChild(iframe);
+    modalBody.appendChild(bodyContent);
 
     // Append header and body to the modal content
     modalContent.appendChild(modalHeader);
@@ -944,7 +976,158 @@ function displayProject(projectData) {
 
     // Append the modal container to the body
     document.body.appendChild(modalContainer);
+    modalContent.classList.add("popup");
 }
+
+function createServicePlansHTML(plans, headerDiv,bodyDiv) {
+    // Create container for service plans
+    const plansContainer = document.createElement('div');
+    plansContainer.classList.add('plan-columns', `column${Object.entries(plans).length}`);
+
+    // Loop through each plan
+    for (const [planName, planDetails] of Object.entries(plans)) {
+        const newPlanDetails = {
+            planName: planName,
+            ...planDetails  // Copy the existing properties
+        };
+        // Create plan card
+        const planCard = document.createElement('div');
+        planCard.classList.add('plan-card');
+
+        // Create plan header
+        const planHeader = document.createElement('div');
+        planHeader.classList.add('plan-header');
+
+        // Create plan name element (h3)
+        const planNameElement = document.createElement('h3');
+        planNameElement.textContent = planName;
+
+        // Create plan price element (p)
+        const planPriceElement = document.createElement('p');
+        planPriceElement.textContent = `Price: ${planDetails.price}`;
+
+        // Append name and price elements to plan header
+        planHeader.appendChild(planNameElement);
+        planHeader.appendChild(planPriceElement);
+
+        // Create plan body
+        const planBody = document.createElement('div');
+        planBody.classList.add('plan-body');
+
+        // Create plan features element (ul)
+        const planFeaturesElement = document.createElement('ul');
+
+        // Loop through features and create list items
+        for (const feature of planDetails.features) {
+            const featureItem = document.createElement('li');
+            featureItem.textContent = feature;
+            planFeaturesElement.appendChild(featureItem);
+        }
+
+        // Append features to plan body
+        planBody.appendChild(planFeaturesElement);
+
+        // Create plan footer
+        const planFooter = document.createElement('div');
+        planFooter.classList.add('plan-footer');
+
+        // Create Buy Now button
+        const planBtn = document.createElement("button");
+        planBtn.type = "button";
+        planBtn.id = planDetails.planID;
+        planBtn.textContent = "Buy Now";
+
+        // Create a "Back" button
+        const backButton = document.createElement('span');
+        backButton.innerHTML = '<i class="fa-solid fa-arrow-left"></i>';
+        backButton.classList.add('back-button');
+
+        planBtn.addEventListener('click', () => {
+            // Log the entire plan object to the console
+            console.log(planDetails);
+            headerDiv.insertBefore(backButton, headerDiv.firstChild);
+            plansContainer.innerHTML = '';
+
+            // Display the selected plan details
+            const selectedPlanDetailsContainer = document.createElement('div');
+            selectedPlanDetailsContainer.className = "selected-plan-details";
+
+            for (const [key, value] of Object.entries(newPlanDetails)) {
+                // Create a paragraph element for each key-value pair
+                const detailItem = document.createElement('p');
+                detailItem.textContent = `${key}: ${value}`;
+
+                // Append the paragraph element to the selectedPlanDetailsContainer
+                selectedPlanDetailsContainer.appendChild(detailItem);
+            }
+
+            // Append the selectedPlanDetailsContainer to plansContainer
+            plansContainer.appendChild(selectedPlanDetailsContainer);
+            
+            let serviceContactForm = createContactForm();
+            serviceContactForm.id = "service-form";
+
+            // Create a container for the service form
+            const serviceFormContainer = document.createElement('div');
+            serviceFormContainer.classList.add('service-form-container');
+
+            // Create a heading for the form
+            const formHeading = document.createElement('h3');
+            formHeading.textContent = 'Tell me about your project';
+
+            // Create a paragraph
+            const formParagraph = document.createElement('p');
+            formParagraph.textContent = 'Please fill out the form below to provide more details about your project.';
+
+            // Append the heading and paragraph to the container
+            serviceFormContainer.appendChild(formHeading);
+            serviceFormContainer.appendChild(formParagraph);
+
+            // Append the form to the container
+            serviceFormContainer.appendChild(serviceContactForm);
+
+            // Append the container to the plansContainer
+            plansContainer.appendChild(serviceFormContainer);
+
+            // Set the class for the plansContainer
+            plansContainer.className = 'service-form-column';
+
+            // Add event listener for form submission
+            serviceContactForm.addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent default form submission
+                // Log form input values and plan details
+                console.log('Form Input:', {
+                    name: event.target.name.value,
+                    email: event.target.email.value,
+                    message: event.target.message.value
+                });
+                console.log('Selected Plan Details:', newPlanDetails);
+            });
+
+        });
+        backButton.addEventListener('click', () => {
+            backButton.remove();
+            // Call a function to re-create the plan details
+            plansContainer.remove();
+            bodyDiv.appendChild(createServicePlansHTML(plans, headerDiv, bodyDiv));
+        });
+
+        // Append button to plan footer
+        planFooter.appendChild(planBtn);
+
+        // Append header, body, and footer to the plan card
+        planCard.appendChild(planHeader);
+        planCard.appendChild(planBody);
+        planCard.appendChild(planFooter);
+
+        // Append plan card to the plans container
+        plansContainer.appendChild(planCard);
+    }
+
+    return plansContainer;
+}
+
+
 //------------------------------------------//
 // create contact section //
 //--------------------------------------//
@@ -1026,6 +1209,18 @@ function createContactSection(contactData) {
     formHeader.appendChild(formHeading);
     formHeader.appendChild(formSubHeading);
     contactForm.appendChild(formHeader);
+    // Append the form to the contact form section
+    contactForm.appendChild(createContactForm());
+
+    // Append contactFeature and contactForm to the contact section
+    contactSection.appendChild(contactFeature);
+    contactSection.appendChild(contactForm);
+
+    // Append the contact section to the main container or body
+    document.getElementById('main-container').appendChild(contactSection);
+}
+
+function createContactForm() {
     // Create a simple contact form
     const form = document.createElement('form');
 
@@ -1060,17 +1255,12 @@ function createContactSection(contactData) {
     form.appendChild(messageTextarea);
     form.appendChild(submitButton);
 
-    // Append the form to the contact form section
-    contactForm.appendChild(form);
-
-    // Append contactFeature and contactForm to the contact section
-    contactSection.appendChild(contactFeature);
-    contactSection.appendChild(contactForm);
-
-    // Append the contact section to the main container or body
-    document.getElementById('main-container').appendChild(contactSection);
+    return form;
 }
 
+// Example of how to use the function:
+
+//document.body.appendChild(contactForm); // Append the form to the body or any other container
 
 //-------------------------------------------------//
 // get the previous section and clicked menu item, call function assigned to the item//
