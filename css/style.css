@@ -279,7 +279,7 @@ button:hover {
     backdrop-filter: blur(10px); /* Apply background blur */
     -webkit-backdrop-filter: blur(10px);
     color: #fff;
-    height: 90vh;
+    min-height: 87vh;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0px;
@@ -1399,8 +1399,6 @@ button:hover {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
-
-
 .skill-group {
     padding: 15px;
     margin: 10px;
@@ -1409,7 +1407,6 @@ button:hover {
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow */
 }
-
 
 .skill-group h3 {
     font-size: 24px;
@@ -1459,16 +1456,24 @@ button:hover {
     #section-skills h1 {
         font-size: 30px;
     }
+
+    #section-skills {
+        margin-top: 0;
+    }
+    .skill-group{
+        margin: 5px;
+    }
 }
 /*--------------------------------------*/
 /* Contact Section */
 #section-contact {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-between; */
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     /* height: 600px; */
+    /* max-width: 97%; */
 }
 
 .contact-feature, .contact-form{
@@ -1509,7 +1514,7 @@ button:hover {
 
 .contact-feature p {
     font-size: 15px;
-    text-align: left;
+    text-align: justify;
     color: #eee;
     margin-bottom: 10px;
 }
@@ -1518,11 +1523,17 @@ button:hover {
     margin-top: 20px;
 }
 
+.contact-info h3{
+    text-align: left;
+    padding: 5px 0;
+    font-size: 25px;
+    text-decoration: underline;
+}
+
 .contact-info p {
     font-size: 16px;
-    margin: 8px;
     color: #ddd;
-    padding: 10px 0;
+    padding: 5px 0;
     text-align: left;
     display: flex;
     align-items: center;
@@ -1548,12 +1559,12 @@ button:hover {
 
 /* Contact Form */
 .contact-form {
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
 }
 
 .form-header{
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 
 .form-header h1{
@@ -1585,36 +1596,100 @@ button:hover {
     color: #fff;
 }
 
-form {
-    display: grid;
-    gap: 20px;
+/* Contact Form */
+form{
+    display: flex;
+    flex-direction: column;
 }
 
-label {
-    font-size: 18px;
+/* Input Group */
+.input-group {
+    margin-bottom: 20px;
+}
+
+/* Label */
+.input-group label {
+    display: block; /* Make label full width */
+    margin-bottom: 5px; /* Spacing between label and input */
+    font-weight: bold; /* Bold label text */
     color: #fff;
 }
 
-input,
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    color: #eee;
+/* Input */
+.input-group input, .input-group textarea {
+    width: 100%; /* Full width input */
+    padding: 8px; /* Padding inside input */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: rgba(255, 255, 255, 0.2); /* Translucent white background */
+    color: #fff; /* Text color */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Inner box shadow */
 }
 
-textarea{
-    width: 100%;
-    height: 150px;
+/* Textarea */
+.input-group textarea {
+    height: 150px; /* Set textarea height */
 }
 
 form button{
     width: 50%;
     margin: 0 auto;
 }
+
+.payment-methods-container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.payment-methods-container h3 {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+/* .payment-info-contents-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+} */
+.payment-methods-container h4 {
+    color: #fff;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-align: left;
+    text-decoration: underline;
+}
+
+.payment-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.payment-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.payment-list li span {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.payment-list li span i {
+    color: #fff;
+}
+
+
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
     #section-contact {
@@ -1630,7 +1705,7 @@ form button{
     }
 
     .contact-feature {
-        border-radius: 16px;
+        border-radius: 0 0 16px 16px;
     }
     .contact-form{
         width: 90%;
@@ -1752,7 +1827,7 @@ form button{
         width: 95%;
     }
     .modal-body{
-        max-height: 700px;
+        max-height: 600px;
         overflow-y: auto;
     }
 }

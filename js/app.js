@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded",async function(){
     //createAboutContainer(alldata['section-about'].texts);
     //createServicesSection(alldata['section-services'].services);
     //createPortfolioSection(alldata['section-portfolio'].projects);
-    //createContactSection(alldata['section-contact']);
+    // createContactSection(alldata['section-contact']);
     //createSkillsSection(alldata['section-skills']);
     //createEducationAndExperienceSection(alldata['section-experience']);
     // Call the function with a 2-second delay
@@ -235,7 +235,7 @@ function createEducationAndExperienceSection(data) {
         universityElement.innerHTML = `<strong><i class="fa-solid fa-building-columns"></i> University:</strong> ${educationEntry.university}`;
         // Create university element
         const subjectElement = document.createElement('p');
-        subjectElement.innerHTML = `<strong><i class="fa-solid fa-building-columns"></i> Subject:</strong> ${educationEntry.subject}`;
+        subjectElement.innerHTML = `<strong><i class="fa-solid fa-book-open"></i> Subject:</strong> ${educationEntry.subject}`;
         // Create university element
         const passedElement = document.createElement('p');
         passedElement.innerHTML = `<strong><i class="fa-regular fa-calendar-days"></i> Passed On:</strong> ${educationEntry.graduationYear}`;
@@ -1060,7 +1060,7 @@ function createServicePlansHTML(plans, headerDiv,bodyDiv) {
                 // Append the paragraph element to the selectedPlanDetailsContainer
                 selectedPlanDetailsContainer.appendChild(detailItem);
             }
-
+            
             // Append the selectedPlanDetailsContainer to plansContainer
             plansContainer.appendChild(selectedPlanDetailsContainer);
             
@@ -1132,6 +1132,7 @@ function createServicePlansHTML(plans, headerDiv,bodyDiv) {
 // create contact section //
 //--------------------------------------//
 function createContactSection(contactData) {
+    console.log(contactData['paymentInfo']);
     // Create contact section
     const contactSection = document.createElement('section');
     contactSection.classList.add('contact-container','appear');
@@ -1187,10 +1188,17 @@ function createContactSection(contactData) {
     contactInfo.appendChild(phone);
     contactInfo.appendChild(address);
 
+    // create paymentInfo contents //
+    const paymentInfoDiv = document.createElement('div');
+    paymentInfoDiv.classList.add('payment-indo-container');
+
+    const paymentDiv = generatePaymentMethodsHTML(contactData['paymentInfo']);
+    paymentInfoDiv.appendChild(paymentDiv);
     // Append elements to contactFeature
     contactFeature.appendChild(heading);
     contactFeature.appendChild(subheading);
     contactFeature.appendChild(contactInfo);
+    contactFeature.appendChild(paymentInfoDiv);
     contactFeature.appendChild(socialMedia);
 
     // Contact Form
@@ -1225,43 +1233,52 @@ function createContactForm() {
     const form = document.createElement('form');
 
     // Add form elements (customize based on your needs)
-    const nameLabel = document.createElement('label');
-    nameLabel.textContent = 'Name:';
-    const nameInput = document.createElement('input');
-    nameInput.type = 'text';
-    nameInput.name = 'name';
-
-    const emailLabel = document.createElement('label');
-    emailLabel.textContent = 'Email:';
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.name = 'email';
-
-    const messageLabel = document.createElement('label');
-    messageLabel.textContent = 'Message:';
-    const messageTextarea = document.createElement('textarea');
-    messageTextarea.name = 'message';
+    const nameGroup = createInputGroup('Name', 'name');
+    const emailGroup = createInputGroup('Email', 'email');
+    const fileGroup = createInputGroup('File', 'file', 'file');
+    const messageGroup = createInputGroup('Message', 'message', 'textarea');
 
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
     submitButton.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Submit`;
 
     // Append form elements to the form
-    form.appendChild(nameLabel);
-    form.appendChild(nameInput);
-    form.appendChild(emailLabel);
-    form.appendChild(emailInput);
-    form.appendChild(messageLabel);
-    form.appendChild(messageTextarea);
+    form.appendChild(nameGroup);
+    form.appendChild(emailGroup);
+    form.appendChild(fileGroup);
+    form.appendChild(messageGroup);
     form.appendChild(submitButton);
 
     return form;
 }
 
-// Example of how to use the function:
+function createInputGroup(labelText, inputName, inputType = 'text') {
+    const inputGroup = document.createElement('div');
+    inputGroup.classList.add('input-group');
 
-//document.body.appendChild(contactForm); // Append the form to the body or any other container
+    const label = document.createElement('label');
+    label.textContent = labelText;
+    label.setAttribute('for', inputName);
 
+    let input;
+
+    if (inputName.toLowerCase() === 'message') {
+        // If input name is 'message', create a textarea
+        input = document.createElement('textarea');
+    } else {
+        // For other input names, create a regular input
+        input = document.createElement('input');
+        input.type = inputType;
+    }
+
+    input.name = inputName;
+    input.id = inputName;
+
+    inputGroup.appendChild(label);
+    inputGroup.appendChild(input);
+
+    return inputGroup;
+}
 //-------------------------------------------------//
 // get the previous section and clicked menu item, call function assigned to the item//
 //---------------------------------------------------//
@@ -1310,4 +1327,66 @@ function updateCopyrightYear() {
     const sidebarElement = document.getElementById('sidebar');
     document.body.appendChild(copyrightDiv);
 }
+//---------------------------------//
+function generatePaymentMethodsHTML(paymentInfo) {
+    const paymentMethodsContainer = document.createElement('div');
+    paymentMethodsContainer.classList.add('payment-methods-container');
+
+    const paymentMethodsHeader = document.createElement('h3');
+    paymentMethodsHeader.textContent = 'We Accept These Payment Methods';
+    paymentMethodsContainer.appendChild(paymentMethodsHeader);
+
+    const paymentInfoContentsDiv = document.createElement('div');
+    paymentInfoContentsDiv.className = "payment-info-contents-div";
+
+    if (paymentInfo.bd.length > 0) {
+        const paymentInfoContents = document.createElement('div');
+        paymentInfoContents.className = "payment-info-contents";
+
+        const bdPaymentList = document.createElement('ul');
+        bdPaymentList.classList.add('payment-list', 'bd-payment-list');
+
+        const bdPaymentTitle = document.createElement('h4');
+        bdPaymentTitle.textContent = 'In Bangladesh';
+        paymentInfoContents.appendChild(bdPaymentTitle);
+
+        paymentInfo.bd.forEach(method => {
+            const listItem = document.createElement('li');
+            const icon = document.createElement('span');
+            icon.innerHTML = method.icon;
+            listItem.appendChild(icon);
+            listItem.appendChild(document.createTextNode(method.method));
+            bdPaymentList.appendChild(listItem);
+        });
+        paymentInfoContents.appendChild(bdPaymentList);
+        paymentInfoContentsDiv.appendChild(paymentInfoContents);
+    }
+
+    if (paymentInfo.foreign.length > 0) {
+        const paymentInfoContents = document.createElement('div');
+        paymentInfoContents.className = "payment-info-contents";
+
+        const foreignPaymentList = document.createElement('ul');
+        foreignPaymentList.classList.add('payment-list', 'foreign-payment-list');
+
+        const foreignPaymentTitle = document.createElement('h4');
+        foreignPaymentTitle.textContent = 'Foreign Transactions';
+        paymentInfoContents.appendChild(foreignPaymentTitle);
+
+        paymentInfo.foreign.forEach(method => {
+            const listItem = document.createElement('li');
+            const icon = document.createElement('span');
+            icon.innerHTML = method.icon;
+            listItem.appendChild(icon);
+            listItem.appendChild(document.createTextNode(method.method));
+            foreignPaymentList.appendChild(listItem);
+        });
+        paymentInfoContents.appendChild(foreignPaymentList);
+        paymentInfoContentsDiv.appendChild(paymentInfoContents);
+    }
+    paymentMethodsContainer.appendChild(paymentInfoContentsDiv);
+    return paymentMethodsContainer;
+}
+
+
 

@@ -344,7 +344,7 @@
   },
   "section-contact": {
     "heading": "Stop Scrolling, Start Building",
-    "subheading": "Partner with me to craft your tangible tomorrow.",
+    "subheading": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "contactInfo": {
         "email": {
             "icon": "<i class='far fa-envelope'></i>",
@@ -390,7 +390,48 @@
             "url": "https://www.whatsapp.com/example",
             "mediaName": "whatsapp"
         }
-    ]
+    ],
+    "paymentInfo": {
+      "bd": [
+          {
+              "icon": "<i class='fas fa-mobile-alt'></i>",
+              "method": "Bkash",
+              "number": "+8801XXXXXXXXX"
+          },
+          {
+              "icon": "<i class='fas fa-rocket'></i>",
+              "method": "Rocket",
+              "number": "+8801XXXXXXXXX"
+          },
+          {
+              "icon": "<i class='fas fa-money-check-alt'></i>",
+              "method": "Nagad",
+              "number": "+8801XXXXXXXXX"
+          },
+          {
+            "icon": "<i class='fa-solid fa-money-bill-transfer'></i>",
+            "method": "Bank Transfer",
+            "number": "+8801XXXXXXXXX"
+        }
+      ],
+      "foreign": [
+          {
+              "icon": "<i class='fas fa-credit-card'></i>",
+              "method": "Wise",
+              "url": "https://wise.com/"
+          },
+          {
+              "icon": "<i class='fas fa-money-check'></i>",
+              "method": "Remitly",
+              "url": "https://www.remitly.com/"
+          },
+          {
+            "icon": "<i class='fa-solid fa-money-bill-trend-up'></i>",
+            "method": "Payoneer",
+            "url": "https://www.Payoneer.com/"
+        }
+      ]
+  }
 }
 
 
