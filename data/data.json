@@ -1,4 +1,23 @@
 {
+  "metaTags": {
+      "description": "Your website description goes here",
+      "keywords": "The best web developer, the best SEO Expert in bangladesh",
+      "author": "Tanvir Abid",
+      "openGraph": {
+          "title": "Your Website Title",
+          "description": "Your website description goes here",
+          "image": "url-to-your-thumbnail-image.jpg",
+          "url": "https://www.yourwebsite.com",
+          "type": "website"
+      },
+      "twitterCard": {
+          "card": "summary_large_image",
+          "site": "@yourtwitterhandle",
+          "title": "Your Website Title",
+          "description": "Your website description goes here",
+          "image": "url-to-your-thumbnail-image.jpg"
+      }
+  },
   "section-home": {
     "ownerInfo":{
         "name": "Khondoker Abid Hasan Tanvir",
@@ -206,7 +225,7 @@
         "description": "Description for Project 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "imageSrc": "img/web2.jpg",
         "tags": ["Web Development", "Backend", "Database"],
-        "category": "Web",
+        "category": "Web Design",
         "projectURL": "https://example.com/project2"
       },
       {
@@ -342,6 +361,58 @@
       }
     ]
   },
+  "section-testimonials": [
+      {
+          "name": "John Doe",
+          "position": "CEO, Company ABC",
+          "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "image": "",
+          "rating": 3
+      },
+      {
+          "name": "Jane Smith",
+          "position": "Marketing Manager, XYZ Inc.",
+          "quote": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          "image": "img/gamer.png",
+          "rating": 4
+      },
+      {
+          "name": "David Williams",
+          "position": "Founder, Startup Co.",
+          "quote": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          "image": "img/man.png",
+          "rating": 4
+      },
+
+      {
+          "name": "Jack Turner",
+          "position": "UX Designer, PixelCraft",
+          "quote": "Integer ut mauris ut mi vehicula ullamcorper. Nunc in sapien vel velit facilisis bibendum.",
+          "image": "",
+          "rating": 3
+      },
+      {
+          "name": "Linda Carter",
+          "position": "HR Manager, TalentSource",
+          "quote": "Curabitur a metus a justo efficitur tincidunt. Donec malesuada nibh sit amet lectus cursus.",
+          "image": "",
+          "rating": 4
+      },
+      {
+          "name": "Michael Brown",
+          "position": "Finance Director, MoneyMinds",
+          "quote": "Fusce aliquet velit id felis congue eleifend. Nulla vel ante in ligula malesuada efficitur.",
+          "image": "",
+          "rating": 4
+      },
+      {
+          "name": "Jack Turner",
+          "position": "UX Designer, PixelCraft",
+          "quote": "Integer ut mauris ut mi vehicula ullamcorper. Nunc in sapien vel velit facilisis bibendum.",
+          "image": "img/man2.png",
+          "rating": 4
+      }
+  ],
   "section-contact": {
     "heading": "Stop Scrolling, Start Building",
     "subheading": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",

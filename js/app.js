@@ -16,6 +16,41 @@ async function getdata() {
 
 document.addEventListener("DOMContentLoaded",async function(){
     let alldata = await getdata(); //important................
+    // generate meta tags //
+    // Function to generate meta tags
+    generateMetaTags(alldata['metaTags']);
+    function generateMetaTags(metaData) {
+        const head = document.head;
+
+        // Create and append standard meta tags
+        const standardMetaTags = `
+            <meta name="description" content="${metaData.description}">
+            <meta name="keywords" content="${metaData.keywords}">
+            <meta name="author" content="${metaData.author}">
+        `;
+        head.insertAdjacentHTML('beforeend', standardMetaTags);
+
+        // Create and append Open Graph meta tags
+        const openGraphMetaTags = `
+            <meta property="og:title" content="${metaData.openGraph.title}">
+            <meta property="og:description" content="${metaData.openGraph.description}">
+            <meta property="og:image" content="${metaData.openGraph.image}">
+            <meta property="og:url" content="${metaData.openGraph.url}">
+            <meta property="og:type" content="${metaData.openGraph.type}">
+        `;
+        head.insertAdjacentHTML('beforeend', openGraphMetaTags);
+
+        // Create and append Twitter Card meta tags
+        const twitterCardMetaTags = `
+            <meta name="twitter:card" content="${metaData.twitterCard.card}">
+            <meta name="twitter:site" content="${metaData.twitterCard.site}">
+            <meta name="twitter:title" content="${metaData.twitterCard.title}">
+            <meta name="twitter:description" content="${metaData.twitterCard.description}">
+            <meta name="twitter:image" content="${metaData.twitterCard.image}">
+        `;
+        head.insertAdjacentHTML('beforeend', twitterCardMetaTags);
+    }
+
     // generate bubbles //
     const bubbleContainer = document.createElement('div');
     bubbleContainer.classList.add('bubble-container');
@@ -58,7 +93,6 @@ document.addEventListener("DOMContentLoaded",async function(){
 
     // Social Media
     let socialMediaData = alldata['section-contact'].socialMedia;
-    console.log(socialMediaData);
     const socialMedia = document.createElement('div');
     socialMedia.classList.add('social-media');
 
@@ -88,6 +122,7 @@ document.addEventListener("DOMContentLoaded",async function(){
         { text: 'Skills', icon: 'fas fa-code' },
         { text: 'Portfolio', icon: 'fas fa-briefcase' },
         { text: 'Services', icon: 'fa-brands fa-buffer' },
+        { text: 'Testimonials', icon: 'fa-solid fa-wand-magic-sparkles' },
         { text: 'Contact', icon: 'fas fa-envelope' }
     ];
     let arrayOfList = [];
@@ -163,10 +198,135 @@ document.addEventListener("DOMContentLoaded",async function(){
     // createContactSection(alldata['section-contact']);
     //createSkillsSection(alldata['section-skills']);
     //createEducationAndExperienceSection(alldata['section-experience']);
+    //createTestimonialSection(alldata['section-testimonials']);
     // Call the function with a 2-second delay
     setTimeout(updateCopyrightYear, 800);
 
 });
+
+function createTestimonialSection(testimonials) {
+    // Create container for testimonial section
+    const testimonialContainer = document.createElement('section');
+    testimonialContainer.classList.add('testimonial-section','appear');
+
+    // Create section header
+    const sectionHeader = document.createElement('div');
+    sectionHeader.classList.add('section-header');
+
+    // Add heading
+    const heading = document.createElement('h2');
+    heading.textContent = 'Testimonials';
+
+    // Add subheading
+    const subheading = document.createElement('p');
+    subheading.textContent = 'What our clients are saying about us';
+
+    // Append heading and subheading to section header
+    sectionHeader.appendChild(heading);
+    sectionHeader.appendChild(subheading);
+
+    // Append section header to testimonial container
+    testimonialContainer.appendChild(sectionHeader);
+
+    // Create cards container
+    const cardsContainer = document.createElement('div');
+    cardsContainer.classList.add('testimonial-cards-container');
+
+    // Loop through each testimonial
+    testimonials.forEach((testimonial, index) => {
+        // Use setTimeout to append each card with a delay
+        setTimeout(() => {
+            // Create testimonial card
+            const testimonialCard = document.createElement('div');
+            testimonialCard.classList.add('testimonial-card');
+            const testimonialCardHeader = document.createElement('div');
+            testimonialCardHeader.classList.add("testimonial-card-header");
+
+            const namePositionContainer = document.createElement('div');
+            namePositionContainer.classList.add('name-position-container');
+            // Create testimonial name
+            const testimonialName = document.createElement('p');
+            testimonialName.classList.add('testimonial-name');
+            testimonialName.textContent = testimonial.name;
+
+            // Create testimonial position
+            const testimonialPosition = document.createElement('p');
+            testimonialPosition.classList.add('testimonial-position');
+            testimonialPosition.textContent = testimonial.position;
+
+            namePositionContainer.appendChild(testimonialName);
+            namePositionContainer.appendChild(testimonialPosition);
+            testimonialCardHeader.appendChild(namePositionContainer);
+
+            if (testimonial.image && testimonial.image !== "") {
+                // Create testimonial image
+                const testimonialImage = document.createElement('img');
+                testimonialImage.alt = testimonial.name;
+                testimonialImage.src = testimonial.image;
+                testimonialCardHeader.appendChild(testimonialImage);
+            } else {
+                // If no image, create an initial-container with the initial of the name
+                let initial = document.createElement('h2');
+                initial.innerHTML = testimonial.name.charAt(0).toUpperCase();
+
+                // Append initial container to the testimonial card
+                testimonialCardHeader.appendChild(initial);
+            }
+
+            // Create testimonial content
+            const testimonialContent = document.createElement('div');
+            testimonialContent.classList.add('testimonial-content');
+
+            // Create testimonial quote
+            const testimonialQuote = document.createElement('p');
+            testimonialQuote.classList.add('testimonial-quote');
+            testimonialQuote.textContent = testimonial.quote;
+
+            // Create testimonial rating
+            const testimonialRating = document.createElement('div');
+            testimonialRating.classList.add('testimonial-rating');
+            testimonialRating.innerHTML = generateRatingStars(testimonial.rating);
+
+            // Append elements to testimonial content
+            testimonialContent.appendChild(testimonialQuote);
+            testimonialContent.appendChild(testimonialRating);
+
+            // Append image and content to testimonial card
+            testimonialCard.appendChild(testimonialCardHeader);
+            testimonialCard.appendChild(testimonialContent);
+
+            // Append testimonial card to the cards container
+            cardsContainer.appendChild(testimonialCard);
+        }, index * 500); // 1000 milliseconds (1 second) delay for each testimonial
+    });
+
+    // Append cards container to the testimonial container
+    testimonialContainer.appendChild(cardsContainer);
+
+    document.getElementById('main-container').appendChild(testimonialContainer);
+}
+
+
+function generateRatingStars(rating) {
+    const fullStars = Math.floor(rating); // Number of full stars
+
+    // Create HTML for rating stars
+    let starsHTML = '';
+
+    // Full stars
+    for (let i = 0; i < fullStars; i++) {
+        starsHTML += '<i class="fa-solid fa-star full-star"></i>';
+    }
+    // Empty stars to make the total 5
+    const emptyStars = 5 - Math.ceil(rating); // Calculate the number of empty stars
+    for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<i class="fa-solid fa-star empty-star"></i>';
+    }
+
+    return starsHTML;
+}
+
+
 
 
 
@@ -403,7 +563,7 @@ function createSlideshow(slidesData) {
     // Get the slideshow container element
     // Create slideshow container
     const slideshowContainer = document.createElement('section');
-    slideshowContainer.classList.add('slideshow-container','appear');
+    slideshowContainer.classList.add('slideshow-container');
     slideshowContainer.id = "section-home";
 
     let btnContainer = document.createElement('div')
@@ -762,8 +922,12 @@ function createPortfolioSection(projects) {
     tabs.forEach((tabName,index) => {
         const tab = document.createElement('div');
         // Extract the last word from tabName if it contains multiple words
-        const lastWord = tabName.split(/\s+/).pop();
-        tab.textContent = lastWord ? lastWord : tabName;
+        if(window.innerWidth <= 768){
+            const lastWord = tabName.split(/\s+/).pop();
+            tab.textContent = lastWord ? lastWord : tabName;
+        }else{
+            tab.textContent =  tabName;
+        }
         tab.classList.add('tab');
         if(index == 0){tab.classList.add('active');}
         tabsContainer.appendChild(tab);
@@ -1099,7 +1263,8 @@ function createServicePlansHTML(plans, headerDiv,bodyDiv) {
                 console.log('Form Input:', {
                     name: event.target.name.value,
                     email: event.target.email.value,
-                    message: event.target.message.value
+                    message: event.target.message.value,
+                    file: event.target.file.value
                 });
                 console.log('Selected Plan Details:', newPlanDetails);
             });
@@ -1310,6 +1475,8 @@ function handleMenuItemClicks(sectionID, previousSection,sectionData) {
                 createContactSection(sectionData);
             }else if(sectionID == "experience"){
                 createEducationAndExperienceSection(sectionData);
+            }else if(sectionID == "testimonials"){
+                createTestimonialSection(sectionData);
             }
     }, 500);
 }
