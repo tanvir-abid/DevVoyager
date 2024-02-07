@@ -1,3 +1,77 @@
+document.addEventListener('DOMContentLoaded', async () =>{
+    const data = await getdata();
+    generateMetaTags(data.metaTags);
+    let container = document.querySelector('main');
+    // typewriterWords 
+    const loadingWords = ['The Best Web Developer. ','Loading...', 'The Best SEO Expert In Bangladesh. '];
+    let loadingAnimationContainer = createLoadingAnimation(data['section-home'].ownerInfo.name, data.metaTags.keywords,loadingWords);
+    container.append(loadingAnimationContainer);
+
+    // Calculate the total duration based on the length of typewriter words
+    const totalDuration = loadingWords.reduce((acc, word) => acc + word.length, 0) * 61.2;
+
+    setTimeout(() => {
+        loadingAnimationContainer.classList.add('active');
+        setTimeout(()=>{
+            loadingAnimationContainer.remove();
+            getDataAndGenrateInitialElements();
+        },300);
+    }, totalDuration);
+
+});
+
+function createLoadingAnimation(ownerName, keywords,typewriterWords) {
+    const loadingContainer = document.createElement('div');
+    loadingContainer.classList.add('loading-container');
+
+    let loadingImg = document.createElement("img");
+    loadingImg.src = "img/logo.png";
+    loadingImg.title = ownerName;
+    loadingImg.alt = keywords;
+    loadingContainer.appendChild(loadingImg);
+
+    const loadingText = document.createElement('div');
+    loadingText.textContent = ownerName;
+    loadingText.classList.add('loading-text');
+    loadingContainer.appendChild(loadingText);
+
+    const typewriterText = document.createElement('div');
+    typewriterText.classList.add('typewriter-text');
+    loadingContainer.appendChild(typewriterText);
+
+    let charIndex = 0;
+    let wordIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+        const currentWord = typewriterWords[wordIndex];
+        const currentText = typewriterText.textContent;
+
+        if (charIndex < currentWord.length && !isDeleting) {
+            typewriterText.textContent += currentWord.charAt(charIndex);
+            charIndex++;
+        } else if (charIndex >= 0 && isDeleting) {
+            typewriterText.textContent = currentText.slice(0, -1);
+            charIndex--;
+        } else {
+            isDeleting = !isDeleting;
+            wordIndex = isDeleting ? (wordIndex + 1) % typewriterWords.length : wordIndex;
+        }
+
+        const speed = isDeleting ? 20 : 40;
+        setTimeout(type, speed);
+    }
+
+    type();
+
+    return loadingContainer;
+}
+
+
+
+//document.addEventListener("DOMContentLoaded", getDataAndGenrateInitialElements());
+//------------------------------------------------------//
+// get data function that returns all the data //
 async function getdata() {
   try {
     const response = await fetch('data/data.json');
@@ -14,43 +88,46 @@ async function getdata() {
   }
 }
 
-document.addEventListener("DOMContentLoaded",async function(){
+//--------------------------------------------------//
+function generateMetaTags(metaData) {
+    const head = document.head;
+
+    // Create and append standard meta tags
+    const standardMetaTags = `
+        <meta name="description" content="${metaData.description}">
+        <meta name="keywords" content="${metaData.keywords}">
+        <meta name="author" content="${metaData.author}">
+    `;
+    head.insertAdjacentHTML('beforeend', standardMetaTags);
+
+    // Create and append Open Graph meta tags
+    const openGraphMetaTags = `
+        <meta property="og:title" content="${metaData.openGraph.title}">
+        <meta property="og:description" content="${metaData.openGraph.description}">
+        <meta property="og:image" content="${metaData.openGraph.image}">
+        <meta property="og:url" content="${metaData.openGraph.url}">
+        <meta property="og:type" content="${metaData.openGraph.type}">
+    `;
+    head.insertAdjacentHTML('beforeend', openGraphMetaTags);
+
+    // Create and append Twitter Card meta tags
+    const twitterCardMetaTags = `
+        <meta name="twitter:card" content="${metaData.twitterCard.card}">
+        <meta name="twitter:site" content="${metaData.twitterCard.site}">
+        <meta name="twitter:title" content="${metaData.twitterCard.title}">
+        <meta name="twitter:description" content="${metaData.twitterCard.description}">
+        <meta name="twitter:image" content="${metaData.twitterCard.image}">
+    `;
+    head.insertAdjacentHTML('beforeend', twitterCardMetaTags);
+}
+
+//-------------------------------------------------//
+async function getDataAndGenrateInitialElements(){
     let alldata = await getdata(); //important................
     // generate meta tags //
     // Function to generate meta tags
-    generateMetaTags(alldata['metaTags']);
-    function generateMetaTags(metaData) {
-        const head = document.head;
-
-        // Create and append standard meta tags
-        const standardMetaTags = `
-            <meta name="description" content="${metaData.description}">
-            <meta name="keywords" content="${metaData.keywords}">
-            <meta name="author" content="${metaData.author}">
-        `;
-        head.insertAdjacentHTML('beforeend', standardMetaTags);
-
-        // Create and append Open Graph meta tags
-        const openGraphMetaTags = `
-            <meta property="og:title" content="${metaData.openGraph.title}">
-            <meta property="og:description" content="${metaData.openGraph.description}">
-            <meta property="og:image" content="${metaData.openGraph.image}">
-            <meta property="og:url" content="${metaData.openGraph.url}">
-            <meta property="og:type" content="${metaData.openGraph.type}">
-        `;
-        head.insertAdjacentHTML('beforeend', openGraphMetaTags);
-
-        // Create and append Twitter Card meta tags
-        const twitterCardMetaTags = `
-            <meta name="twitter:card" content="${metaData.twitterCard.card}">
-            <meta name="twitter:site" content="${metaData.twitterCard.site}">
-            <meta name="twitter:title" content="${metaData.twitterCard.title}">
-            <meta name="twitter:description" content="${metaData.twitterCard.description}">
-            <meta name="twitter:image" content="${metaData.twitterCard.image}">
-        `;
-        head.insertAdjacentHTML('beforeend', twitterCardMetaTags);
-    }
-
+    //generateMetaTags(alldata['metaTags']);
+    
     // generate bubbles //
     const bubbleContainer = document.createElement('div');
     bubbleContainer.classList.add('bubble-container');
@@ -75,8 +152,8 @@ document.addEventListener("DOMContentLoaded",async function(){
     // Portfolio Owner Information
     let homeData = alldata['section-home'];
     let ownerPhoto = document.createElement('img');
-    ownerPhoto.src = homeData["ownerInfo"].thumbnailURL; // Replace with the actual path
-    ownerPhoto.alt = 'Owner Photo';
+    ownerPhoto.src = homeData["ownerInfo"].thumbnailURL !== "" ? homeData["ownerInfo"].thumbnailURL : 'img/logo.png';
+    ownerPhoto.alt = homeData["ownerInfo"].name;
 
     let ownerName = document.createElement('p');
     ownerName.className = "owner";
@@ -193,7 +270,7 @@ document.addEventListener("DOMContentLoaded",async function(){
     //---------------------------------------------//
     createSlideshow(alldata["section-home"].slides);
     //createAboutContainer(alldata['section-about'].texts);
-    //createServicesSection(alldata['section-services'].services);
+    // createServicesSection(alldata['section-services'].services);
     //createPortfolioSection(alldata['section-portfolio'].projects);
     // createContactSection(alldata['section-contact']);
     //createSkillsSection(alldata['section-skills']);
@@ -202,7 +279,7 @@ document.addEventListener("DOMContentLoaded",async function(){
     // Call the function with a 2-second delay
     setTimeout(updateCopyrightYear, 800);
 
-});
+};
 
 function createTestimonialSection(testimonials) {
     // Create container for testimonial section
@@ -325,10 +402,6 @@ function generateRatingStars(rating) {
 
     return starsHTML;
 }
-
-
-
-
 
 //------------------------------------------//
 // create Education section //
@@ -551,10 +624,6 @@ function createEducationAndExperienceSection(data) {
 }
 
 
-
-
-
-
 //------------------------------------------//
 // create slide show //
 //--------------------------------------//
@@ -605,6 +674,13 @@ function createSlideshow(slidesData) {
         const button = document.createElement('button');
         button.textContent = slideData.caption.buttonText;
 
+        if (slideData.caption.buttonURL) {
+            button.addEventListener('click', function() {
+                // Open PDF in a new tab
+                window.open(slideData.caption.buttonURL, '_blank');
+            });
+        }
+        
         // Append elements to the caption div
         caption.appendChild(title);
         caption.appendChild(description);
@@ -1124,7 +1200,7 @@ function displayProject(projectData) {
         bodyContent = iframe;
     } else if (projectData.hasOwnProperty('plans')) {
         // Service data
-        bodyContent = createServicePlansHTML(projectData.plans, projectName,modalBody);
+        bodyContent = createServicePlansHTML(projectData.plans, projectName,modalBody, projectData.article);
         modalContent.classList.add('plan-modal');
     }
 
@@ -1143,7 +1219,25 @@ function displayProject(projectData) {
     modalContent.classList.add("popup");
 }
 
-function createServicePlansHTML(plans, headerDiv,bodyDiv) {
+function createServicePlansHTML(plans, headerDiv, bodyDiv, article) {
+    // Create container for service plans
+    const serviceDetailsContainer = document.createElement('div');
+    serviceDetailsContainer.classList.add('service-details-container');
+
+    if(article){
+            // Create service article container
+            const serviceArticleContainer = document.createElement('div');
+            serviceArticleContainer.classList.add('service-article-container');
+            // Create service article content
+            const serviceArticleContent = document.createElement('div');
+            serviceArticleContent.classList.add('service-article-content');
+            serviceArticleContent.innerHTML = article;
+            // Append article content to service article container
+            serviceArticleContainer.appendChild(serviceArticleContent);
+            // Append service article container to service details container
+            serviceDetailsContainer.appendChild(serviceArticleContainer);
+    }
+
     // Create container for service plans
     const plansContainer = document.createElement('div');
     plansContainer.classList.add('plan-columns', `column${Object.entries(plans).length}`);
@@ -1208,7 +1302,6 @@ function createServicePlansHTML(plans, headerDiv,bodyDiv) {
 
         planBtn.addEventListener('click', () => {
             // Log the entire plan object to the console
-            console.log(planDetails);
             headerDiv.insertBefore(backButton, headerDiv.firstChild);
             plansContainer.innerHTML = '';
 
@@ -1224,10 +1317,10 @@ function createServicePlansHTML(plans, headerDiv,bodyDiv) {
                 // Append the paragraph element to the selectedPlanDetailsContainer
                 selectedPlanDetailsContainer.appendChild(detailItem);
             }
-            
+
             // Append the selectedPlanDetailsContainer to plansContainer
             plansContainer.appendChild(selectedPlanDetailsContainer);
-            
+
             let serviceContactForm = createContactForm();
             serviceContactForm.id = "service-form";
 
@@ -1273,8 +1366,8 @@ function createServicePlansHTML(plans, headerDiv,bodyDiv) {
         backButton.addEventListener('click', () => {
             backButton.remove();
             // Call a function to re-create the plan details
-            plansContainer.remove();
-            bodyDiv.appendChild(createServicePlansHTML(plans, headerDiv, bodyDiv));
+            serviceDetailsContainer.remove();
+            bodyDiv.appendChild(createServicePlansHTML(plans, headerDiv, bodyDiv, article));
         });
 
         // Append button to plan footer
@@ -1289,8 +1382,13 @@ function createServicePlansHTML(plans, headerDiv,bodyDiv) {
         plansContainer.appendChild(planCard);
     }
 
-    return plansContainer;
+    // Append service article container and plans container to service details container
+    //serviceDetailsContainer.appendChild(serviceArticleContainer);
+    serviceDetailsContainer.appendChild(plansContainer);
+
+    return serviceDetailsContainer;
 }
+
 
 
 //------------------------------------------//

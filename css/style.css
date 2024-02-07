@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Protest+Guerrilla&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -25,6 +24,107 @@ body {
 	}
 }
 
+/*-------------------------------------*/
+/* loading animation style*/
+/*-------------------------------------*/
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  gap: 20px;
+}
+
+.loading-container.active {
+  transition: all 0.3s ease-out;
+  animation: loadingFade 0.3s ease-out;
+}
+
+@keyframes loadingFade {
+    from{opacity: 1;}
+    to{opacity: 0;}
+}
+
+.loading-container img{
+    width: 200px;
+    margin: 10% 0 0 0;
+}
+
+.loading-text {
+  font-family: "Protest Guerrilla", sans-serif;
+  letter-spacing: 10px;
+  font-size: 4em;
+  color: #fc3735;
+  background: linear-gradient(120deg, #85d8ff 0%, #ffd3b6 100%);
+  background-size: 1600px 200px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation-duration: 3s;
+  animation-name: animationgradienttitle;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  font-weight: bolder;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+@keyframes animationgradienttitle {
+  0% {
+      background-position: 0 1600px;
+  }
+  100% {
+      background-position: 1600px 0;
+  }
+}
+
+.typewriter-text {
+  font-size: 2rem;
+  color: #fff; 
+  height: 30px;
+  position: relative;
+  font-family: "Protest Guerrilla", sans-serif;
+  letter-spacing: 2px;
+}
+
+.typewriter-text::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 4px;
+  background-color: #fff;
+  margin-left: 3px;
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 50%, 100% {
+    opacity: 0;
+  }
+  25%, 75% {
+    opacity: 1;
+  }
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media only screen and (max-width: 768px) {
+  .loading-container {
+    gap: 10px;
+  }
+  .loading-text {
+    font-size: 2.5em;
+    letter-spacing: 5px;
+  }
+
+  .typewriter-text {
+    font-size: 1rem;
+  }
+}
+/*-------------------------------------*/
+/* some general style*/
+/*-------------------------------------*/
 h1{
     font-family: "Fjalla One", sans-serif;
 }
@@ -287,6 +387,13 @@ button:hover {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
     display: block;
+    transition: all 0.5s ease-in;
+    animation: sidebarSlideIn 0.5s ease-in;
+}
+
+@keyframes sidebarSlideIn {
+    from{transform: translateX(-100px);opacity: 0;}
+    to{transform: translateX(0px);opacity: 1;}
 }
 
 .thumbnail-container {
@@ -1913,7 +2020,10 @@ form button{
     backdrop-filter: blur(5px);
     scrollbar-width: thin;
     scrollbar-color: #e73c7e rgba(0, 0, 0, 0);
+    overflow-y: auto;
+    max-height: 80vh;
 }
+
 /* Iframe Styles */
 .modal-body iframe {
 
@@ -1938,6 +2048,66 @@ form button{
     transform: rotate(90deg);
 }
 
+/*-----------------------------------*/
+/* Styling for Service Article Container */
+.service-article-container {
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for Service Article Content */
+.service-article-content {
+    color: #fff; /* Text color */
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center; /* Center-align text */
+}
+
+.service-article-content h1,
+.service-article-content img {
+    display: block;
+    margin: 0 auto; 
+}
+
+.service-article-content img {
+    max-width: 60%;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgb(0,0,0,0.4);
+    margin: 5px auto;
+}
+
+.service-article-content p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* Unique Design for ul and li */
+.service-article-content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    text-align: left;
+}
+
+.service-article-content li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
+.service-article-content li::before {
+    content: "\2022"; /* Bullet character */
+    position: absolute;
+    left: 0;
+    color: #ff8c00; /* Bullet color */
+}
+
+
+/*------------------------------------*/
 @media screen and (max-width: 768px) {
     .modal-content{
         width: 95%;
@@ -1945,6 +2115,10 @@ form button{
     .modal-body{
         max-height: 600px;
         overflow-y: auto;
+    }
+
+    .service-article-content img {
+        max-width: 100%;
     }
 }
 /*---------------------------*/

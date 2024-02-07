@@ -30,7 +30,8 @@
         "caption": {
           "title": "Professional Web Designer & Developer",
           "description": "Meet a professional web designer and developer. With a passion for creating visually appealing and functional websites, our owner brings expertise to every project.",
-          "buttonText": "Resume"
+          "buttonText": "Resume",
+          "buttonURL":"https://flowcv.com/resume/0iocamm2jw"
         }
       },
       {
@@ -65,6 +66,7 @@
           "tagLine": "Crafting digital solutions",
           "synopsis": "Building modern and responsive websites tailored to your business needs.",
           "buttonText": "Learn More",
+          "article": "<h2>Web Development Overview</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><ul><li>Feature 1</li><li>Feature 2</li><li>Feature 3</li></ul><img src='https://i.postimg.cc/pLRJfBRb/banner9.png' alt='Demo Image'><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p><p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p><p>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p><p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p><p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>",
           "plans": {
               "basic": {
                   "price": "$500",
@@ -83,11 +85,11 @@
               },
               "enterprise": {
                   "price": "$2500",
-                  "features": ["Unlimited Pages", "Bespoke Design", "Contact Form", "Blog Integration", "E-commerce Functionality","Blog Integration", "E-commerce Functionality","Blog Integration", "E-commerce Functionality", "Custom Web Applications"],
+                  "features": ["Unlimited Pages", "Bespoke Design", "Contact Form", "Blog Integration", "E-commerce Functionality", "Blog Integration", "E-commerce Functionality", "Blog Integration", "E-commerce Functionality", "Custom Web Applications"],
                   "planID": "121314"
               }
           }
-      },    
+      },        
       {
         "icon": "fa-solid fa-brush",
         "name": "Web Design",
