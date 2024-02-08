@@ -31,23 +31,21 @@
           "title": "Professional Web Designer & Developer",
           "description": "Meet a professional web designer and developer. With a passion for creating visually appealing and functional websites, our owner brings expertise to every project.",
           "buttonText": "Resume",
-          "buttonURL":"https://flowcv.com/resume/0iocamm2jw"
+          "buttonURL":"https://drive.google.com/file/d/1670GNVVVAL-bKQS_OHPbTluqj1dE4UXj/preview"
         }
       },
       {
         "imageSrc": "img/banner1.png",
         "caption": {
           "title": "Web Design and Development",
-          "description": "Explore our services in web design and development. We specialize in crafting modern and responsive websites that enhance user experience and meet your business goals.",
-          "buttonText": "Discover More"
+          "description": "Explore our services in web design and development. We specialize in crafting modern and responsive websites that enhance user experience and meet your business goals."
         }
       },
       {
         "imageSrc": "img/banner2.png",
         "caption": {
           "title": "Professional SEO Expert",
-          "description": "Boost your online presence with our professional SEO services. Our owner is an expert in search engine optimization, ensuring your website ranks high and attracts the right audience.",
-          "buttonText": "Explore SEO"
+          "description": "Boost your online presence with our professional SEO services. Our owner is an expert in search engine optimization, ensuring your website ranks high and attracts the right audience."
         }
       }
     ]

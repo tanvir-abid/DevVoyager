@@ -560,7 +560,7 @@ button:hover {
     display: none;
     justify-content: space-between;
     align-items: center;
-    background: rgba(225,255,255, 0.2);
+    background: rgba(225,255,255, 0.4);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
@@ -598,41 +598,44 @@ button:hover {
 .caption {
     width: 50%;
     padding: 20px 30px;
-    color: #fff;
     text-align: center;
-    background: rgba(154, 243, 255, 0.2);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(154, 243, 255, 0.3);
-    border-radius: 16px;
-    color: #01502f;
-    margin: 20px;
+    color: #27298e;
+    margin: 25px;
 }
 
 /* Style for caption elements */
 .caption h1 {
     margin-bottom: 10px;
+    letter-spacing: 5px;
+    font-family: "Protest Guerrilla", sans-serif;
+    font-size: 50px;
 }
 
 .caption p {
     margin-bottom: 20px;
-    
+    text-align: justify;
+    font-weight: 600;
+    line-height: 25px;
 }
 
 .caption button {
     padding: 10px 20px;
-    background-color: rgb(85, 88, 255,1);
+    background-color: transparent;
+    color: #2e279d;
+    font-weight: bolder;
+    font-size: 15px;
     border-radius: 10px;
-    color: #fff;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: 40%;
+    /* backdrop-filter: blur(10px); */
+    border: 1px solid rgb(85, 88, 255);
 }
 
 .caption button:hover{
-    background-color: rgb(85, 88, 255,0.8);
+    background-color: rgb(85, 88, 255,1);
+    color: #fff;
 }
 /* Button styles */
 .btn-container button {
@@ -709,8 +712,9 @@ button:hover {
     }
 
     .caption button {
-        font-size: 18px;
+        font-size: 15px;
         padding: 10px 20px;
+        width: 30%;
     }
 
     .btn-container button {
@@ -1381,6 +1385,7 @@ button:hover {
     border: 1px solid rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease-in;
     animation: slightMove 2s ease-in;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 @keyframes slightMove {
     from{transform: translateY(30px);opacity: 0;}

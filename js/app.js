@@ -1,23 +1,23 @@
-document.addEventListener('DOMContentLoaded', async () =>{
+document.addEventListener('DOMContentLoaded', async () => {
     const data = await getdata();
     generateMetaTags(data.metaTags);
     let container = document.querySelector('main');
     // typewriterWords 
-    const loadingWords = ['The Best Web Developer. ','Loading...', 'The Best SEO Expert In Bangladesh. '];
-    let loadingAnimationContainer = createLoadingAnimation(data['section-home'].ownerInfo.name, data.metaTags.keywords,loadingWords);
-    container.append(loadingAnimationContainer);
+    // const loadingWords = ['The Best Web Developer. ','Loading...', 'The Best SEO Expert In Bangladesh. '];
+    // let loadingAnimationContainer = createLoadingAnimation(data['section-home'].ownerInfo.name, data.metaTags.keywords,loadingWords);
+    // container.append(loadingAnimationContainer);
 
-    // Calculate the total duration based on the length of typewriter words
-    const totalDuration = loadingWords.reduce((acc, word) => acc + word.length, 0) * 61.2;
+    // // Calculate the total duration based on the length of typewriter words
+    // const totalDuration = loadingWords.reduce((acc, word) => acc + word.length, 0) * 61.2;
 
-    setTimeout(() => {
-        loadingAnimationContainer.classList.add('active');
-        setTimeout(()=>{
-            loadingAnimationContainer.remove();
-            getDataAndGenrateInitialElements();
-        },300);
-    }, totalDuration);
-
+    // setTimeout(() => {
+    //     loadingAnimationContainer.classList.add('active');
+    //     setTimeout(()=>{
+    //         loadingAnimationContainer.remove();
+    //         getDataAndGenrateInitialElements();
+    //     },300);
+    // }, totalDuration);
+    getDataAndGenrateInitialElements();
 });
 
 function createLoadingAnimation(ownerName, keywords,typewriterWords) {
@@ -268,6 +268,7 @@ async function getDataAndGenrateInitialElements(){
 
     document.querySelector('main').appendChild(menubar);
     //---------------------------------------------//
+
     createSlideshow(alldata["section-home"].slides);
     //createAboutContainer(alldata['section-about'].texts);
     // createServicesSection(alldata['section-services'].services);
@@ -671,20 +672,24 @@ function createSlideshow(slidesData) {
         const description = document.createElement('p');
         description.textContent = slideData.caption.description;
 
-        const button = document.createElement('button');
-        button.textContent = slideData.caption.buttonText;
-
-        if (slideData.caption.buttonURL) {
-            button.addEventListener('click', function() {
-                // Open PDF in a new tab
-                window.open(slideData.caption.buttonURL, '_blank');
-            });
-        }
-        
         // Append elements to the caption div
         caption.appendChild(title);
         caption.appendChild(description);
-        caption.appendChild(button);
+
+        if(slideData.caption.buttonText){
+            const button = document.createElement('button');
+            if(index == 0){
+                button.innerHTML = `<i class="fa-solid fa-paperclip"></i> ${slideData.caption.buttonText}`;
+            }else{
+                button.textContent = slideData.caption.buttonText;
+            }
+            button.addEventListener('click', function() {
+                if (slideData.caption.buttonURL && index == 0) {
+                    displaySingleFile('My Resume',slideData.caption.buttonURL);
+                }
+            });
+            caption.appendChild(button);
+        }
 
         // Append elements to the slide div
         // Check if index is odd
@@ -742,6 +747,70 @@ function showSlide(index) {
             }
         }
     });
+}
+
+
+function displaySingleFile(headingText,filePathOrURL) {
+    // Create modal container
+    const modalContainer = document.createElement('div');
+    modalContainer.classList.add('modal-container');
+
+    // Create modal content
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content','popup');
+
+    // Create modal header
+    const modalHeader = document.createElement('div');
+    modalHeader.classList.add('modal-header');
+
+    const modalTitle = document.createElement("h2");
+    modalTitle.textContent = headingText;
+    modalHeader.appendChild(modalTitle);
+
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    closeButton.addEventListener('click', function() {
+        modalContainer.remove();
+    });
+    modalHeader.appendChild(closeButton);
+
+    // Create modal body
+    const modalBody = document.createElement('div');
+    modalBody.classList.add('modal-body');
+
+    if (filePathOrURL.startsWith('http') || filePathOrURL.startsWith('www')) {
+        // If it's a URL, use an iframe
+        const pdfIframe = document.createElement('iframe');
+        pdfIframe.src = filePathOrURL;
+        pdfIframe.width = '100%';
+        pdfIframe.height = '500px';
+        pdfIframe.allow = 'autoplay';
+        modalBody.appendChild(pdfIframe);
+    } else {
+        // If it's a local file path, use an object tag
+        const pdfObject = document.createElement('object');
+        pdfObject.type = 'application/pdf';
+        pdfObject.data = filePathOrURL;
+        pdfObject.width = '100%';
+        pdfObject.height = '500px';
+        modalBody.appendChild(pdfObject);
+    }
+
+    // Create modal footer
+    const modalFooter = document.createElement('div');
+    modalFooter.classList.add('modal-footer');
+
+    // Append header, body, and footer to modal content
+    modalContent.appendChild(modalHeader);
+    modalContent.appendChild(modalBody);
+    modalContent.appendChild(modalFooter);
+
+    // Append modal content to modal container
+    modalContainer.appendChild(modalContent);
+
+    // Append modal container to body
+    document.body.appendChild(modalContainer);
 }
 
 // ----------------------------------------------------------//
