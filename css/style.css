@@ -121,6 +121,10 @@ body {
   .typewriter-text {
     font-size: 1rem;
   }
+
+  .loading-container img{
+    margin: 50% 0 0 0;
+  }
 }
 /*-------------------------------------*/
 /* some general style*/
