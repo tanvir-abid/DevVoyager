@@ -3,21 +3,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     generateMetaTags(data.metaTags);
     let container = document.querySelector('main');
     // typewriterWords 
-    const loadingWords = ['The Best Web Developer. ','Loading...', 'The Best SEO Expert In Bangladesh. '];
-    let loadingAnimationContainer = createLoadingAnimation(data['section-home'].ownerInfo.name, data.metaTags.keywords,loadingWords);
-    container.append(loadingAnimationContainer);
+    // const loadingWords = ['The Best Web Developer. ','Loading...', 'The Best SEO Expert In Bangladesh. '];
+    // let loadingAnimationContainer = createLoadingAnimation(data['section-home'].ownerInfo.name, data.metaTags.keywords,loadingWords);
+    // container.append(loadingAnimationContainer);
 
-    // Calculate the total duration based on the length of typewriter words
-    const totalDuration = loadingWords.reduce((acc, word) => acc + word.length, 0) * 61.2;
+    // // Calculate the total duration based on the length of typewriter words
+    // const totalDuration = loadingWords.reduce((acc, word) => acc + word.length, 0) * 61.2;
 
-    setTimeout(() => {
-        loadingAnimationContainer.classList.add('active');
-        setTimeout(()=>{
-            loadingAnimationContainer.remove();
-            getDataAndGenrateInitialElements();
-        },300);
-    }, totalDuration);
+    // setTimeout(() => {
+    //     loadingAnimationContainer.classList.add('active');
+    //     setTimeout(()=>{
+    //         loadingAnimationContainer.remove();
+    //         getDataAndGenrateInitialElements();
+    //     },300);
+    // }, totalDuration);
+    getDataAndGenrateInitialElements();
 });
+
 
 function createLoadingAnimation(ownerName, keywords,typewriterWords) {
     const loadingContainer = document.createElement('div');
@@ -261,7 +263,7 @@ async function getDataAndGenrateInitialElements(){
     document.querySelector('main').appendChild(menubar);
     //---------------------------------------------//
 
-    createSlideshow(alldata["section-home"].slides);
+    // createSlideshow(alldata["section-home"].slides);
     //createAboutContainer(alldata['section-about'].texts);
     // createServicesSection(alldata['section-services'].services);
     // createPortfolioSection(alldata['section-portfolio'].projects);
@@ -635,6 +637,11 @@ function createSlideshow(slidesData) {
     prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
     prevButton.classList.add('prev-button');
 
+    // Create play button
+    const playButton = document.createElement('button');
+    playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    playButton.classList.add('play-button');
+
     // Create next button
     const nextButton = document.createElement('button');
     nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
@@ -642,6 +649,7 @@ function createSlideshow(slidesData) {
 
     // Append buttons to slideshow container
     btnContainer.appendChild(prevButton);
+    btnContainer.appendChild(playButton);
     btnContainer.appendChild(nextButton);
     slideshowContainer.appendChild(btnContainer);
 
@@ -706,12 +714,48 @@ function createSlideshow(slidesData) {
     // Show the first slide
     let currentSlide = 0;
     showSlide(currentSlide);
+
+// Set auto slide interval (in milliseconds)
+let autoSlideInterval;
+// Variable to track auto slide status
+let autoSlidePlaying = true;
+
+// Function to start auto slide
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        currentSlide = (currentSlide + 1) % slidesData.length;
+        showSlide(currentSlide);
+    }, 5000);
+}
+
+// Function to pause auto slide
+function pauseAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+// Start auto slide initially
+startAutoSlide();
+
+
+
     // Event listener for next button
     nextButton.addEventListener('click', () => {
         currentSlide = (currentSlide + 1) % slidesData.length;
         showSlide(currentSlide);
     });
-    
+    // Event listener for next button
+// Event listener for play button
+playButton.addEventListener('click', function() {
+    autoSlidePlaying = !autoSlidePlaying;
+    if (!autoSlidePlaying) {
+        // If auto slide is active, pause it
+        pauseAutoSlide();
+        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+    } else {
+        // If auto slide is paused, start it
+        startAutoSlide();
+        playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    }
+});
     // Event listener for previous button
     prevButton.addEventListener('click', () => {
         currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
@@ -1702,7 +1746,30 @@ function updateCopyrightYear() {
     // Append the copyright div to the sidebar
     const sidebarElement = document.getElementById('sidebar');
     document.body.appendChild(copyrightDiv);
+
+    toggleTitle();
 }
+
+function toggleTitle() {
+    const originalTitle = document.title;
+    const alternateTitles = [
+        'Builder of words, seeker of clicks', 
+        'Craft, Connect, Convert', 
+        'Building websites that convert'
+    ];
+    let currentIndex = 0;
+
+    setInterval(() => {
+        document.title = alternateTitles[currentIndex];
+        
+        setTimeout(() => {
+            document.title = originalTitle;
+        }, 3000);
+
+        currentIndex = (currentIndex + 1) % alternateTitles.length;
+    }, 5000);
+}
+
 //---------------------------------//
 function generatePaymentMethodsHTML(paymentInfo) {
     const paymentMethodsContainer = document.createElement('div');

@@ -330,12 +330,12 @@ button:hover {
 
     .bubble2 {
         top: 30%; /* Adjusted position for mobile */
-        left: 24%; /* Adjusted position for mobile */
+        left: 50%; /* Adjusted position for mobile */
     }
 
     .bubble3 {
         top: 70%; /* Adjusted position for mobile */
-        left: 10%; /* Adjusted position for mobile */
+        left: 40%; /* Adjusted position for mobile */
     }
 
     .bubble4 {
@@ -640,6 +640,11 @@ button:hover {
     color: #fff;
 }
 /* Button styles */
+.btn-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .btn-container button {
     position: absolute;
     top: 50%;
@@ -655,6 +660,9 @@ button:hover {
     padding: 5px 10px;
     border-radius: 50%;
     transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-container button:hover{
@@ -664,6 +672,11 @@ button:hover {
 
 .prev-button {
     left: 10px;
+}
+
+.btn-container .play-button{
+    padding: 10px 15px;
+    font-size: 30px;
 }
 
 .next-button {
