@@ -123,7 +123,7 @@ body {
   }
 
   .loading-container img{
-    margin: 50% 0 0 0;
+    margin: 40% 0 0 0;
   }
 }
 /*-------------------------------------*/
@@ -511,8 +511,6 @@ button:hover {
         from{transform: translateX(0px);}
         to{transform: translateX(-300px);}
     }
-
-
 }
 /*-------------------------------------*/
 /*style for main container */
@@ -706,7 +704,7 @@ button:hover {
     }
 
     .caption h1 {
-        font-size: 24px;
+        font-size: 28px;
         margin-bottom: 10px;
     }
 
@@ -716,8 +714,8 @@ button:hover {
     }
 
     .caption button {
-        font-size: 15px;
-        padding: 10px 14px;
+        font-size: 14px;
+        padding: 10px 15px;
         width: 30%;
     }
 
@@ -1385,7 +1383,7 @@ button:hover {
     backdrop-filter: blur(10px);
     border-radius: 16px;
     overflow: hidden;
-    padding: 20px;
+    padding: 0px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease-in;
     animation: slightMove 2s ease-in;
@@ -1472,6 +1470,73 @@ button:hover {
     justify-content: center;
     align-items: center;
     color: #27298e;
+}
+
+/* Lightbox Container */
+.lightbox-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Lightbox Display Section */
+.lightbox-display {
+    text-align: center;
+}
+
+.lightbox-display img {
+    width: 100%;
+    height: 70vh; /* Adjust as needed */
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Lightbox Thumbnails Section */
+.lightbox-thumbnails {
+    display: flex;
+    overflow-x: auto;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-thumbnails img {
+    max-width: 100px; /* Adjust thumbnail width */
+    height: 55px;
+    object-fit: cover;
+    cursor: pointer;
+    margin-right: 10px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in;
+    opacity: 0.5;
+}
+
+.lightbox-thumbnails img:hover {
+    border-color: #007BFF; 
+    opacity: 1;
+}
+
+.lightbox-thumbnails img.active {
+    opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    #section-portfolio {
+        margin: 10px;
+    }
+
+    .tab{
+        font-size: 14px;
+    }
+    
+    .lightbox-display img {
+        height: auto; /* Adjust as needed */
+    }
+
+    .lightbox-thumbnails img {
+        max-width: 70px; 
+        margin-right: 5px;
+    }
 }
 /*--------------------------------------*/
 /* Skills Section */

@@ -37,7 +37,7 @@
       {
         "imageSrc": "img/banner1.png",
         "caption": {
-          "title": "Web Design and Development",
+          "title": "Web Designer and Developer",
           "description": "Explore our services in web design and development. We specialize in crafting modern and responsive websites that enhance user experience and meet your business goals."
         }
       },
@@ -234,14 +234,19 @@
         "imageSrc": "img/seo1.jpg",
         "tags": ["Graphic Design", "Print Media"],
         "category": "SEO",
-        "projectURL": "https://example.com/project3"
+        "projectURL": [
+          "https://i.postimg.cc/mhxFK1C8/banner5.jpg",
+          "https://i.postimg.cc/jqLXNfXf/banner4.jpg",
+          "https://i.postimg.cc/XYRSS3YH/banner3.jpg",
+          "https://i.postimg.cc/PJ2PV2Cj/banner-mobile-103.jpg"
+        ]
       },
       {
         "title": "Project 4",
         "description": "Description for Project 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "imageSrc": "img/seo2.jpg",
         "tags": ["SEO", "Content Writing"],
-        "category": "SEO",
+        "category": "JavaScript",
         "projectURL": "https://example.com/project4"
       },
       {
@@ -268,25 +273,33 @@
       "heading": "Academic Qualifications",
       "education": [
         {
-          "degree": "Bachelor of Science in Computer Science",
-          "university": "University of Example",
-          "location": "City, Country",
-          "graduationYear": "2022",
-          "subject": "english"
+          "degree": "B.A (Honours) in English",
+          "university": "National University",
+          "location": "Dhaka, Bangladesh",
+          "graduationYear": "2018",
+          "subject": "English",
+          "activity": [
+              "Co-founder of College Language Club",
+              "Organized and hosted several sessions",
+              "Designed material for speaking sessions"
+          ]
         },
         {
-          "degree": "Master of Science in Data Science",
-          "university": "Another University",
-          "location": "City, Country",
-          "graduationYear": "2024",
-          "subject": "bangla",
+          "degree": "M.A. in Applied Linguistics and TESOL",
+          "university": "University Of Liberal Arts, Bangladesh",
+          "location": "DHAKA, Bangladesh",
+          "graduationYear": "2021",
+          "subject": "Applied Linguistics and TESOL",
           "activity": [
-            "Research projects in Machine Learning",
-            "Data analysis and visualization workshops",
-            "Collaboration with industry professionals",
-            "Internship in a data-driven company"
+            "Awarded Megna Cum Laude",
+            "Completed Research Methods for ELL and Teaching course",
+            "Conducted survey and interview for Need Analysis",
+            "Designed a syllabus for business English",
+            "Conducted demo classes in English Language Learning and Teaching",
+            "Conducted demo classes in Teaching Practicum and Classroom Management",
+            "Completed Thesis on online assessment using mixed methods"
           ]
-        }        
+        }                
       ]
     },
     "data-experience": {

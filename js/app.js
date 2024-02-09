@@ -65,10 +65,6 @@ function createLoadingAnimation(ownerName, keywords,typewriterWords) {
 
     return loadingContainer;
 }
-
-
-
-//document.addEventListener("DOMContentLoaded", getDataAndGenrateInitialElements());
 //------------------------------------------------------//
 // get data function that returns all the data //
 async function getdata() {
@@ -123,9 +119,6 @@ function generateMetaTags(metaData) {
 //-------------------------------------------------//
 async function getDataAndGenrateInitialElements(){
     let alldata = await getdata(); //important................
-    // generate meta tags //
-    // Function to generate meta tags
-    //generateMetaTags(alldata['metaTags']);
     
     // generate bubbles //
     const bubbleContainer = document.createElement('div');
@@ -271,7 +264,7 @@ async function getDataAndGenrateInitialElements(){
     createSlideshow(alldata["section-home"].slides);
     //createAboutContainer(alldata['section-about'].texts);
     // createServicesSection(alldata['section-services'].services);
-    //createPortfolioSection(alldata['section-portfolio'].projects);
+    // createPortfolioSection(alldata['section-portfolio'].projects);
     // createContactSection(alldata['section-contact']);
     //createSkillsSection(alldata['section-skills']);
     //createEducationAndExperienceSection(alldata['section-experience']);
@@ -1204,7 +1197,7 @@ function createPortfolioSection(projects) {
 }
 
 function displayProject(projectData) {
-    console.log(projectData);
+    //console.log(projectData);
     // Create modal container
     const modalContainer = document.createElement('div');
     modalContainer.classList.add('modal-container');
@@ -1261,11 +1254,61 @@ function displayProject(projectData) {
 
     if (projectData.hasOwnProperty('projectURL')) {
         // Portfolio data
-        const iframe = document.createElement('iframe');
-        iframe.src = projectData.projectURL;
-        iframe.style.width = '100%';
-        iframe.style.height = '70vh';
-        bodyContent = iframe;
+        if (typeof projectData.projectURL === "string") {
+            const iframe = document.createElement('iframe');
+            iframe.src = projectData.projectURL;
+            iframe.style.width = '100%';
+            iframe.style.height = '70vh';
+            bodyContent = iframe;
+        } else if (typeof projectData.projectURL === "object") {
+            // Create lightbox container
+            const lightboxContainer = document.createElement('div');
+            lightboxContainer.classList.add('lightbox-container');
+
+            // Create lightbox display section
+            const lightboxDisplay = document.createElement('div');
+            lightboxDisplay.classList.add('lightbox-display');
+
+            // Create img tag for lightbox display
+            const displayImage = document.createElement('img');
+            displayImage.src = projectData.projectURL[0]; // Assuming the first URL
+            lightboxDisplay.appendChild(displayImage);
+
+            // Create lightbox thumbnails section
+            const lightboxThumbnails = document.createElement('div');
+            lightboxThumbnails.classList.add('lightbox-thumbnails');
+
+            // Create img tags for all URLs in thumbnails
+            projectData.projectURL.forEach((url,index) => {
+                const thumbnailImage = document.createElement('img');
+                thumbnailImage.src = url;
+                if(index == 0){
+                    thumbnailImage.classList.add('active');
+                }
+                // Add click event to set display image on thumbnail click
+                thumbnailImage.addEventListener('click', function() {
+                    // Remove active class from previously clicked thumbnail
+                    const activeThumbnail = document.querySelector('.lightbox-thumbnails img.active');
+                    if (activeThumbnail) {
+                        activeThumbnail.classList.remove('active');
+                    }
+                
+                    // Set source for displayImage
+                    displayImage.src = url;
+                
+                    // Add active class to the clicked thumbnail
+                    thumbnailImage.classList.add('active');
+                });
+                
+                lightboxThumbnails.appendChild(thumbnailImage);
+            });
+
+            // Append display and thumbnails to lightbox container
+            lightboxContainer.appendChild(lightboxDisplay);
+            lightboxContainer.appendChild(lightboxThumbnails);
+
+            bodyContent = lightboxContainer;
+        }
     } else if (projectData.hasOwnProperty('plans')) {
         // Service data
         bodyContent = createServicePlansHTML(projectData.plans, projectName,modalBody, projectData.article);
