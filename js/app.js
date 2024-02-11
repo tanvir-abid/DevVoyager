@@ -638,7 +638,7 @@ function createSlideshow(slidesData) {
 
     // Create play button
     const playButton = document.createElement('button');
-    playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    // playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
     playButton.classList.add('play-button');
 
     // Create next button
@@ -714,47 +714,54 @@ function createSlideshow(slidesData) {
     let currentSlide = 0;
     showSlide(currentSlide);
 
-// Set auto slide interval (in milliseconds)
-let autoSlideInterval;
-// Variable to track auto slide status
-let autoSlidePlaying = true;
+    // Set auto slide interval (in milliseconds)
+    let autoSlideInterval;
+    // Variable to track auto slide status
+    let autoSlidePlaying = true;
 
-// Function to start auto slide
-function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
-        currentSlide = (currentSlide + 1) % slidesData.length;
-        showSlide(currentSlide);
-    }, 5000);
-}
-
-// Function to pause auto slide
-function pauseAutoSlide() {
-    clearInterval(autoSlideInterval);
-}
-// Start auto slide initially
-startAutoSlide();
-
-
-
+    // Function to start auto slide
+    function startAutoSlide() {
+        let count = 5;
+        playButton.innerHTML = count;
+    
+        autoSlideInterval = setInterval(() => {
+            count--;
+            if (count > 0) {
+                playButton.innerHTML = `<span class="counting">${count}</span>`;
+            } else {
+                playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                clearInterval(autoSlideInterval);
+                currentSlide = (currentSlide + 1) % slidesData.length;
+                showSlide(currentSlide);
+                startAutoSlide(); // Restart the countdown
+            }
+        }, 5000);
+    }
+    // Start auto slide initially
+    startAutoSlide();
     // Event listener for next button
     nextButton.addEventListener('click', () => {
         currentSlide = (currentSlide + 1) % slidesData.length;
         showSlide(currentSlide);
     });
-    // Event listener for next button
-// Event listener for play button
-playButton.addEventListener('click', function() {
-    autoSlidePlaying = !autoSlidePlaying;
-    if (!autoSlidePlaying) {
-        // If auto slide is active, pause it
-        pauseAutoSlide();
-        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
-    } else {
-        // If auto slide is paused, start it
-        startAutoSlide();
-        playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    // Event listener for play button
+    playButton.addEventListener('click', function() {
+        autoSlidePlaying = !autoSlidePlaying;
+        if (!autoSlidePlaying) {
+            // If auto slide is active, pause it
+            pauseAutoSlide();
+            playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+        } else {
+            // If auto slide is paused, start it
+            startAutoSlide();
+            playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        }
+    });
+
+   // Function to pause auto slide
+   function pauseAutoSlide() {
+        clearInterval(autoSlideInterval);
     }
-});
     // Event listener for previous button
     prevButton.addEventListener('click', () => {
         currentSlide = (currentSlide - 1 + slidesData.length) % slidesData.length;
@@ -1172,7 +1179,26 @@ function createPortfolioSection(projects) {
         // Image in the card header
         const image = document.createElement('img');
         image.src = project.imageSrc;
-
+        cardHeader.appendChild(image);
+        // language and ttag contianer
+        const langAndTagContainer = document.createElement('div');
+        langAndTagContainer.classList.add('lang-and-tag-container');
+        // Languages in the card header
+        if(project.language){
+            const languages = document.createElement('div');
+            languages.classList.add('languages');
+            Object.entries(project.language).forEach(([lang, percentage]) => {
+                const spanLang = document.createElement('span');
+                spanLang.textContent = `${lang} ${percentage}%`;
+                if(percentage <= 20){
+                    spanLang.style.fontSize = '7px';
+                }
+                spanLang.setAttribute('value',`${percentage}%`);
+                spanLang.style.width = `${percentage}%`;
+                languages.appendChild(spanLang);
+            });
+            langAndTagContainer.appendChild(languages);
+        }
         // Tags in the card body
         const tags = document.createElement('p');
         tags.classList.add('tags');
@@ -1181,10 +1207,8 @@ function createPortfolioSection(projects) {
             spanTag.textContent = tag;
             tags.appendChild(spanTag);
         });
-
-        cardHeader.appendChild(image);
-        cardHeader.appendChild(tags);
-
+        langAndTagContainer.appendChild(tags);
+        cardHeader.appendChild(langAndTagContainer);
         // Create card body
         const cardBody = document.createElement('div');
         cardBody.classList.add('card-body');

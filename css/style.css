@@ -330,12 +330,12 @@ button:hover {
 
     .bubble2 {
         top: 30%; /* Adjusted position for mobile */
-        left: 50%; /* Adjusted position for mobile */
+        left: 24%; /* Adjusted position for mobile */
     }
 
     .bubble3 {
         top: 70%; /* Adjusted position for mobile */
-        left: 40%; /* Adjusted position for mobile */
+        left: 10%; /* Adjusted position for mobile */
     }
 
     .bubble4 {
@@ -677,6 +677,16 @@ button:hover {
 .btn-container .play-button{
     padding: 10px 15px;
     font-size: 30px;
+}
+
+.btn-container .play-button .counting{
+    transition: all 0.3s ease;
+    animation: count 0.3s ease;
+}
+
+@keyframes count {
+    from{opacity: 0;transform: scale(0);}
+    to{opacity: 1;transform: scale(1);}
 }
 
 .next-button {
@@ -1418,16 +1428,43 @@ button:hover {
     border-radius: 10px 10px 0 0;
 }
 
-.card-header p{
+.card-header .lang-and-tag-container{
     position: absolute;
     left: 0;
     bottom: 0;
-    padding: 10px;
+    width: 100%;
     background-color: rgb(225,225,225,0.2);
     backdrop-filter: blur(5px);
-    width: 93.5%;
     color: #fff;
-    font-size: 10px;
+    font-size: 8px;
+}
+
+.card-header .languages{
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.card-header .languages span{
+    text-align: center;
+    padding: 2px;
+    position: relative;
+    background-color: rgb(225,225,225,0.4);
+    backdrop-filter: blur(10px);
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid white;
+}
+
+
+.card-header .languages span:last-child{
+    border-right: none;
+}
+
+.card-header p{
+    padding: 10px;
 }
 
 .card-header p span{

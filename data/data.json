@@ -213,20 +213,30 @@
   "section-portfolio": {
     "projects": [
       {
-        "title": "Convertify-unit-and-number-base-converter",
-        "description": "Description for Project 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "title": "Convertify Unit And Number Base Converter",
+        "description": "Convertify facilitates seamless unit conversions (length, mass, volume, speed) and numeral base transformations. Features dynamic HTML generation and accurate conversion algorithms.",
         "imageSrc": "img/web1.jpg",
-        "tags": ["Web Design", "Frontend", "Responsive"],
-        "category": "Web Design",
-        "projectURL": "https://tanvir-abid.github.io/Convertify-unit-and-number-base-converter/"
+        "tags": ["Web Design", "Responsive Frontend", "Web develop"],
+        "category": "Web app",
+        "projectURL": "https://tanvir-abid.github.io/Convertify-unit-and-number-base-converter/",
+        "language": {
+          "HTML": 9.8,
+          "CSS": 35.7,
+          "JavaScript": 54.5
+        }
       },
       {
-        "title": "Project 2",
-        "description": "Description for Project 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "title": "Sudoku Game",
+        "description": "Interactive and engaging Sudoku game – test your logic and problem-solving skills with varying difficulty levels. Enjoy daily challenges, multiplayer mode, and an ad-free experience. Play anytime, anywhere on mobile or desktop. Let's master Sudoku together!",
         "imageSrc": "img/web2.jpg",
-        "tags": ["Web Development", "Backend", "Database"],
-        "category": "Web Design",
-        "projectURL": "https://example.com/project2"
+        "tags": ["Web Development", "Puzzle game", "Javascript"],
+        "category": "Web app",
+        "projectURL": "https://tanvir-abid.github.io/Suduku-Game-by-Tanvir-Abid/",
+        "language": {
+          "HTML": 36.3,
+          "CSS": 27.2,
+          "JavaScript": 36.5
+        }
       },
       {
         "title": "Project 3",
