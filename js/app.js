@@ -3,21 +3,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     generateMetaTags(data.metaTags);
     let container = document.querySelector('main');
     // typewriterWords 
-    const loadingWords = ['The Best Web Developer. ','Loading...', 'The Best SEO Expert In Bangladesh. '];
-    let loadingAnimationContainer = createLoadingAnimation(data['section-home'].ownerInfo.name, data.metaTags.keywords,loadingWords);
-    container.append(loadingAnimationContainer);
+    // const loadingWords = ['The Best Web Developer. ','Loading...', 'The Best SEO Expert In Bangladesh. '];
+    // let loadingAnimationContainer = createLoadingAnimation(data['section-home'].ownerInfo.name, data.metaTags.keywords,loadingWords);
+    // container.append(loadingAnimationContainer);
 
-    // Calculate the total duration based on the length of typewriter words
-    const totalDuration = loadingWords.reduce((acc, word) => acc + word.length, 0) * 61.2;
+    // // Calculate the total duration based on the length of typewriter words
+    // const totalDuration = loadingWords.reduce((acc, word) => acc + word.length, 0) * 61.2;
+
+    // setTimeout(() => {
+    //     loadingAnimationContainer.classList.add('active');
+    //     setTimeout(()=>{
+    //         loadingAnimationContainer.remove();
+    //         getDataAndGenrateInitialElements();
+    //     },300);
+    // }, totalDuration);
+    getDataAndGenrateInitialElements();
+});
+
+function createTwinklingStar() {
+    const star = document.createElement('i');
+    star.classList.add('fa-solid', 'fa-star', 'twinkling-star');
+    star.style.left = `${Math.random() * 85}%`;
+    star.style.top = `${Math.random() * 85}%`;
+    document.querySelector('main').appendChild(star);
 
     setTimeout(() => {
-        loadingAnimationContainer.classList.add('active');
-        setTimeout(()=>{
-            loadingAnimationContainer.remove();
-            getDataAndGenrateInitialElements();
-        },300);
-    }, totalDuration);
-});
+        star.classList.remove('twinkling-star');
+        star.classList.add('falling-star');
+        setTimeout(() => {
+            star.remove();
+        }, 200);
+    }, Math.random() * 5000 + 1000); // Remove star after random time between 1 to 6 seconds
+}
+
+function twinklingStars() {
+    setInterval(createTwinklingStar, 1000); // Create a new star every 2 seconds
+}
+
+// twinklingStars(); // Start twinkling stars animation
+
 
 
 function createLoadingAnimation(ownerName, keywords,typewriterWords) {
@@ -118,19 +142,47 @@ function generateMetaTags(metaData) {
 }
 
 //-------------------------------------------------//
+const currentTime = new Date();
+const currentHour = currentTime.getHours();
+
 async function getDataAndGenrateInitialElements(){
     let alldata = await getdata(); //important................
     
-    // generate bubbles //
-    const bubbleContainer = document.createElement('div');
-    bubbleContainer.classList.add('bubble-container');
+    // generate sky container //
+    const skyContainer = document.createElement('div');
+    skyContainer.classList.add('sky-container');
+    // Create sun or moon element
+    if (currentHour >= 6 && currentHour < 18) {
+        console.log("It's daytime!");
+        document.body.style.background = 'linear-gradient(-120deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)';
+        document.body.style.backgroundSize = '400% 400%';
 
-    for (let i = 0; i < 5; i++) {
-        const bubbleDiv = document.createElement('div');
-        bubbleDiv.classList.add("bubble",`bubble${i+1}`)
-        bubbleContainer.appendChild(bubbleDiv);
+        const sun = document.createElement('div');
+        sun.classList.add('sun');
+        skyContainer.appendChild(sun);
+        const canvas = document.createElement('canvas');
+        canvas.id = 'canv';
+        skyContainer.appendChild(canvas);
+        const birdScript = document.createElement('script');
+        birdScript.src = 'js/bird.js';
+        document.body.appendChild(birdScript);
+    } else {
+        console.log("It's nighttime!");
+        document.body.style.background = "linear-gradient(-120deg, #2C5364, #203A43, #0F2027, #141E30,#03071e)";
+        document.body.style.backgroundSize = '400% 400%';
+
+        const moon = document.createElement('div');
+        moon.classList.add('moon');
+        skyContainer.appendChild(moon);
+        twinklingStars();
     }
-    document.body.append(bubbleContainer);
+    
+    for (let i = 0; i < 5; i++) {
+        const cloudDiv = document.createElement('div');
+        cloudDiv.classList.add("cloud",`cloud${i+1}`)
+        skyContainer.appendChild(cloudDiv);
+    }
+    document.body.append(skyContainer);
     //------------------------------------//
     let container = document.createElement('div');
     container.id = "container";
@@ -138,6 +190,11 @@ async function getDataAndGenrateInitialElements(){
     // Create Sidebar
     let sidebar = document.createElement('div');
     sidebar.id = 'sidebar';
+    if (currentHour >= 6 && currentHour < 18) {
+        sidebar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.2)';
+    }else{
+        sidebar.style.boxShadow = '0 4px 30px rgba(255, 255, 255, 0.2)';
+    }
 
     let thumbnailDiv = document.createElement('div');
     thumbnailDiv.classList.add("thumbnail-container");
@@ -162,7 +219,6 @@ async function getDataAndGenrateInitialElements(){
     thumbnailDiv.appendChild(ownerDesignation);
 
     // Social Media
-    let socialMediaData = alldata['section-contact'].socialMedia;
     const socialMedia = document.createElement('div');
     socialMedia.classList.add('social-media');
 
@@ -174,6 +230,11 @@ async function getDataAndGenrateInitialElements(){
         link.href = social.url;
         link.target = '_blank';
         link.setAttribute("name",social.mediaName);
+        if (currentHour >= 6 && currentHour < 18) {
+            link.style.color = '#5558ff';
+        }else{
+            link.style.color = '#F6FDC3';
+        };
         link.appendChild(icon);
 
         socialMedia.appendChild(link);
@@ -735,7 +796,7 @@ function createSlideshow(slidesData) {
                 showSlide(currentSlide);
                 startAutoSlide(); // Restart the countdown
             }
-        }, 5000);
+        }, 3000);
     }
     // Start auto slide initially
     startAutoSlide();

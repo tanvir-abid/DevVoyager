@@ -316,25 +316,43 @@
       "heading": "Professional Experience",
       "experience": [
         {
-          "position": "Software Engineer",
-          "company": "Tech Solutions Inc.",
-          "location": "City, Country",
-          "startDate": "2022-06-01",
-          "endDate": "2023-12-31",
+          "position": "Data Cleaning Specialist",
+          "company": "Münster University",
+          "location": "Münster, Germany",
+          "startDate": "2021-07-01",
+          "endDate": "present",
           "responsibilities": [
-            "Developed and maintained web applications.",
-            "Collaborated with cross-functional teams."
+            "Cleaned research data by mixing necessary codes.",
+            "Matched data requirements."
           ]
         },
         {
-          "position": "Data Analyst Intern",
-          "company": "Data Insights Co.",
-          "location": "City, Country",
-          "startDate": "2021-01-15",
-          "endDate": "2021-05-15",
+          "position": "Professional SEO Expert",
+          "company": "Local Freelancer",
+          "location": "Dhaka, Bangladesh",
+          "startDate": "2019-09-01",
+          "endDate": "2020-02-29",
           "responsibilities": [
-            "Assisted in analyzing large datasets.",
-            "Created visualizations to communicate insights."
+            "Product identification analyzing the market and marking off the competitors.",
+            "Keyword research to find consumers’ interest.",
+            "Writing content, categorizing, and optimizing the keywords.",
+            "Creating clickbait title maintaining the URL specification."
+          ]
+        },
+        {
+          "position": "Front End Developer",
+          "company": "Local Freelancer",
+          "location": "Dhaka, Bangladesh",
+          "startDate": "2016-01-01",
+          "endDate": "2020-02-29",
+          "responsibilities": [
+            "Dealt with various clients from different countries independently.",
+            "Created logic to function web applications using JavaScript and jQuery.",
+            "Researched, designed, and implemented functions for identifying, extracting, analyzing, and retrieving traffic behavior.",
+            "Tested troubleshooting methods and devised innovative solutions.",
+            "Conducted regression testing, analyzed results, and made observations.",
+            "Gathered data on integration issues and vulnerabilities.",
+            "Maintained proper decorum and adhered to a strict schedule."
           ]
         }
       ]
