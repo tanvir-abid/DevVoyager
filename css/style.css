@@ -5,6 +5,8 @@
 }
 
 body {
+    background: linear-gradient(-120deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 	height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
@@ -31,7 +33,6 @@ body {
   align-items: center;
   height: 100vh;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
   gap: 20px;
 }
 
@@ -714,12 +715,21 @@ canvas {
     font-family: "Protest Guerrilla", sans-serif;
     font-size: 50px;
 }
-
+.night .caption h1{
+    background-clip: text;
+    background: linear-gradient(to right, #ffefba, #ffffff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
 .caption p {
     margin-bottom: 20px;
     text-align: justify;
     font-weight: 600;
     line-height: 25px;
+}
+
+.night .caption p{
+    color: #F6FDC3;
 }
 
 .caption button {
@@ -737,10 +747,18 @@ canvas {
     border: 1px solid rgb(85, 88, 255);
 }
 
+.night .caption button{
+    background-color: transparent;
+    color: #F6FDC3;
+    border: 1px solid #F6FDC3;
+}
+
 .caption button:hover{
     background-color: rgb(85, 88, 255,1);
     color: #fff;
 }
+
+
 /* Button styles */
 .btn-container{
     display: flex;
@@ -988,8 +1006,8 @@ canvas {
 #section-services {
     margin: 30px;
     padding: 20px;
-    background: rgba(225, 225, 225, 0.5);
-    backdrop-filter: blur(10px);
+    /* background: rgba(225, 225, 225, 0.5);
+    backdrop-filter: blur(10px); */
     border-radius: 16px;
 }
 
@@ -1021,6 +1039,13 @@ canvas {
     background-color: rgb(225,225,225,0.8);
 }
 
+.night #section-services h1 {
+    background: linear-gradient(to right, #ffefba, #ffffff);
+    -webkit-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+}
+
 /* Services Container Styles */
 .services-container {
     display: grid;
@@ -1037,6 +1062,13 @@ canvas {
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(27, 123, 210, 0.3);
     padding: 20px;
+    color: #5558ff;
+}
+
+.night .service{
+    color: #ffefba;
+    background: rgba(0,0,0, 0.2);
+    border: 1px solid rgb(255, 239, 186, 0.3);
 }
 
 /* Service Icon Styles */
@@ -1044,14 +1076,12 @@ canvas {
     display: block;
     font-size: 35px;
     margin-bottom: 10px;
-    color: #5558ff;
 }
 
 /* Service Name Styles */
 .service h2 {
     font-size: 22px;
     margin-bottom: 10px;
-    color: #5558ff;
 }
 
 /* Service Tagline Styles */
@@ -1066,6 +1096,10 @@ canvas {
     font-size: 14px;
     margin-bottom: 15px;
     color: #01502f;
+}
+
+.night .tagline, .night .synopsis{
+    color: #ffefba;
 }
 /*----------------------------*/
 /*style for plan cards and div in the modal*/
@@ -1237,8 +1271,8 @@ canvas {
 
 .education-container,
 .experience-container{
-    background-color: rgba(225, 225, 225, 0.5);
-    backdrop-filter: blur(5px);
+    /* background-color: rgba(225, 225, 225, 0.5);
+    backdrop-filter: blur(5px); */
     border-radius: 16px;
     padding: 10px;
 }
@@ -1261,6 +1295,14 @@ canvas {
     padding-bottom: 10px;
 }
 
+.night .education-header h1,
+.night .experience-header h1 {
+    background: linear-gradient(to right, #ffefba, #ffffff);
+    -webkit-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+}
+
 .education-header h1::before,
 .experience-header h1::before{
     content: '';
@@ -1271,6 +1313,11 @@ canvas {
     width: 50%;
     height: 5px;
     margin-top: 2px;
+}
+
+.night .education-header h1::before,
+.night .experience-header h1::before{
+    background-color: #ffefba;
 }
 
 .education-card-container,
@@ -1305,6 +1352,11 @@ canvas {
   color: #030556;
 }
 
+.night .education-card .edu-card-header h1,
+.night .experience-card .exp-card-header h1 {
+  color: #ffefba;
+}
+
 .education-card .edu-card-header span,
 .experience-card .exp-card-header span {
   display: block;
@@ -1314,7 +1366,7 @@ canvas {
 
 .education-card .edu-card-body,
 .experience-card .exp-card-body{
-    background-color: rgb(255,255,255,0.1);
+    background-color: rgb(255,255,255,0.2);
     backdrop-filter: blur(5px);
     padding: 15px 30px;
     position: relative;
@@ -1330,6 +1382,11 @@ canvas {
     margin-bottom: 5px;
 }
 
+.night .education-card .edu-card-body p,
+.night .experience-card .exp-card-body p {
+    color: #DCF2F1;
+}
+
 .education-card .two-column,
 .experience-card .two-column{
     display: grid;
@@ -1341,8 +1398,13 @@ canvas {
 .experience-card h3{
     padding: 5px;
     text-align: center;
-    background-color: rgb(85, 88, 255,0.2);
+    background-color: rgb(85, 88, 255,0.5);
     border-radius: 7px;
+}
+
+.night .education-card h3,
+.night .experience-card h3{
+    color: #ffefba;
 }
 
 .education-card .edu-card-body  i,
@@ -1351,11 +1413,18 @@ canvas {
     color: #030556;
 }
 
+.education-card .edu-card-body  i,
+.experience-card .exp-card-body  i{
+    color: #DCF2F1;
+}
+
 .experience-card .exp-card-body ul li {
     list-style: none;
     padding-left: 20px;
     color: #030556;
 }
+
+
 /* Timeline styling using pseudo-elements */
 .education-card:before,
 .experience-card::before {
@@ -1487,6 +1556,10 @@ canvas {
     transition: background 0.3s ease;
 }
 
+.night .tab{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 /* Default tab styles */
 .tab:hover {
     background: rgba(255, 255, 255, 0.3);
@@ -1515,6 +1588,12 @@ canvas {
     animation: slightMove 2s ease-in;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
+
+.night .card{
+    background: rgba(0,0,0,0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
 @keyframes slightMove {
     from{transform: translateY(30px);opacity: 0;}
     to{transform: translateY(0);opacity: 1;}
@@ -1585,6 +1664,13 @@ canvas {
     overflow-y: auto;
     background-color: rgb(85, 88, 255,0.2);
     backdrop-filter: blur(5px);
+    color: #27298e;
+}
+
+.night .card-body{
+    background-color: transparent;
+    backdrop-filter: unset;
+    color: #ffefba;
 }
 
 .card-body h3 {
@@ -1594,14 +1680,12 @@ canvas {
     font-size: 18px;
     background: rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    color: #27298e;
+    
 }
 
 .card-body .description-container{
     padding: 10px;
-    color: #030556;
     text-align: justify;
-
 }
 
 /* Card footer styles */
@@ -1695,13 +1779,12 @@ canvas {
 /* Skills Section */
 #section-skills {
     text-align: center;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /* background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3); */
     margin-top: 30px;
+    border-radius: 16px;
 }
 
 #section-skills h1 {
@@ -1717,6 +1800,13 @@ canvas {
     padding-bottom: 10px;
 }
 
+.night #section-skills h1 {
+    background: linear-gradient(to right, #ffefba, #ffffff);
+    -webkit-background-clip: text; 
+    background-clip: text;
+    color: transparent;
+}
+
 #section-skills h1::before{
     content: '';
     position: absolute;
@@ -1726,6 +1816,10 @@ canvas {
     width: 50%;
     height: 5px;
     margin-top: 2px;
+}
+
+#section-skills h1::before{
+    background-color: #ffefba;
 }
 
 .skill-group-container {
@@ -1739,13 +1833,18 @@ canvas {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    color: #555;
+}
+
+.night .skill-group{
+    background: rgba(0, 0, 0, 0.2);
+    color: #ffefba;
 }
 
 .skill-group h3 {
     font-size: 24px;
     margin-bottom: 15px;
-    color: #555;
 }
 
 .skill {
@@ -1756,7 +1855,6 @@ canvas {
 .skill p {
     font-size: 18px;
     margin-bottom: 8px;
-    color: #333;
 }
 
 .bar {
@@ -2077,7 +2175,7 @@ form button{
 .testimonial-cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 5px;
+    gap: 10px;
     min-height: 400px;
 }
 
@@ -2092,7 +2190,12 @@ form button{
     transition: all 0.5s ease-in;
     animation: fadeIn 0.5s ease-in;
 }
- 
+
+.night .testimonial-card{
+    background-color: rgb(0,0,0, 0.2);
+    box-shadow: 0 0 8px rgba(255,255,255, 0.3);
+}
+
 @keyframes fadeIn {
     from{transform: translateY(20px);opacity: 0;}
     to{transform: translateY(0px);opacity: 1;}
@@ -2110,6 +2213,7 @@ form button{
 .testimonial-card-header img {
     width: 60px;
     height: 60px;
+    border-radius: 50%;
     object-fit: cover; /* Ensure the image covers the entire container */
 }
 
@@ -2126,6 +2230,13 @@ form button{
     background: rgb(85, 88, 255,0.1); /* Transparent white background */
     backdrop-filter: blur(10px); /* Apply a blur effect to mimic glassmorphism */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box-shadow for depth */
+}
+
+.night .testimonial-card-header img,
+.night .testimonial-card-header h2{
+    color: #ffefba;
+    box-shadow: 0 0px 10px rgb(255, 239, 186, 0.3);
+    background: rgb(246, 253, 195, 0.5);
 }
 
 .testimonial-content {
@@ -2149,6 +2260,19 @@ form button{
     color: #191818;
 }
 
+.night .testimonial-card-header{
+    border-bottom: 1px solid rgb(255, 239, 186, 0.8);
+}
+
+.night .testimonial-name,
+.night .testimonial-quote{
+    color: #ffefba;
+}
+
+.night .testimonial-position{
+    color: rgb(255, 224, 122,0.5);
+}
+
 .testimonial-rating {
     margin-top: 10px;
     display: flex;
@@ -2163,11 +2287,17 @@ form button{
 /* Styles for empty stars */
 .empty-star {
     color: black;
-    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+    -webkit-text-fill-color: transparent;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: rgb(24, 23, 23);
 }
 
+.night .empty-star{
+    color: #ffefba;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(255, 224, 122);
+}
 /*-------------------------------------*/
 /* Modal Container */
 .modal-container {

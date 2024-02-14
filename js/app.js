@@ -3,21 +3,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     generateMetaTags(data.metaTags);
     let container = document.querySelector('main');
     // typewriterWords 
-    // const loadingWords = ['The Best Web Developer. ','Loading...', 'The Best SEO Expert In Bangladesh. '];
-    // let loadingAnimationContainer = createLoadingAnimation(data['section-home'].ownerInfo.name, data.metaTags.keywords,loadingWords);
-    // container.append(loadingAnimationContainer);
+    const loadingWords = ['The Best Web Developer. ','Loading...', 'The Best SEO Expert In Bangladesh. '];
+    let loadingAnimationContainer = createLoadingAnimation(data['section-home'].ownerInfo.name, data.metaTags.keywords,loadingWords);
+    container.append(loadingAnimationContainer);
 
-    // // Calculate the total duration based on the length of typewriter words
-    // const totalDuration = loadingWords.reduce((acc, word) => acc + word.length, 0) * 61.2;
+    // Calculate the total duration based on the length of typewriter words
+    const totalDuration = loadingWords.reduce((acc, word) => acc + word.length, 0) * 61.2;
 
-    // setTimeout(() => {
-    //     loadingAnimationContainer.classList.add('active');
-    //     setTimeout(()=>{
-    //         loadingAnimationContainer.remove();
-    //         getDataAndGenrateInitialElements();
-    //     },300);
-    // }, totalDuration);
-    getDataAndGenrateInitialElements();
+    setTimeout(() => {
+        loadingAnimationContainer.classList.add('active');
+        setTimeout(()=>{
+            loadingAnimationContainer.remove();
+            getDataAndGenrateInitialElements();
+        },300);
+    }, totalDuration);
 });
 
 function createTwinklingStar() {
@@ -40,10 +39,7 @@ function twinklingStars() {
     setInterval(createTwinklingStar, 1000); // Create a new star every 2 seconds
 }
 
-// twinklingStars(); // Start twinkling stars animation
-
-
-
+//--------------------------------------------------------------------//
 function createLoadingAnimation(ownerName, keywords,typewriterWords) {
     const loadingContainer = document.createElement('div');
     loadingContainer.classList.add('loading-container');
@@ -293,6 +289,10 @@ async function getDataAndGenrateInitialElements(){
     // generate main container div for furthur use //
     const mainContainer = document.createElement('div');
     mainContainer.id='main-container';
+    console.log(currentHour);
+    if (currentHour < 6 || currentHour > 18) {
+        mainContainer.classList.add('night');
+    }
     container.appendChild(mainContainer);
     //----------------------------------------------------//
     let menubar = document.createElement('span');
@@ -990,7 +990,7 @@ function createServicesSection(servicesArray) {
     servicesSection.id = 'section-services';
 
     const serviceHeader = document.createElement('h1');
-    serviceHeader.textContent = "Services";
+    serviceHeader.innerHTML = '<i class="fa-solid fa-screwdriver-wrench"></i> Services';
     servicesSection.appendChild(serviceHeader);
     // Create container for services
     const servicesContainer = document.createElement('div');
