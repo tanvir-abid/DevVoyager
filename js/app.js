@@ -1334,6 +1334,9 @@ function displayProject(projectData) {
     const modalContent = document.createElement('div');
     modalContent.classList.add('modal-content');
 
+    if (currentHour >= 6 || currentHour < 18) {
+        modalContent.classList.add('night');
+    }
     // Create modal header
     const modalHeader = document.createElement('div');
     modalHeader.classList.add('modal-header');
