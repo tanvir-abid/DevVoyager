@@ -12,69 +12,107 @@
 </head>
 <body>
     
-<main>
-<div class="main-container">
-    <div class="message-container">
-        <div class="image-container">
-            <img src="img/thank/Appreciation-bro.svg" alt="Message Image">
-        </div>
-        <div class="message-contents">
-            <div class="heading-container">
-                <!-- <h1 class="heading">Thank You</h1> -->
-            </div>
-            <p>Your message has been received. We'll get back to you as soon as possible.</p>
-            <button id="home"><i class="fa-solid fa-house-chimney-crack"></i> Home</button>
-        </div>
-    </div>
-</div>
-    <!-- <div class="contact-container">
-        <div class="contact-contents">
-            <h2>Contact Information</h2>
-            <p>Email: info@example.com</p>
-            <p>Phone: +1 (123) 456-7890</p>
-            <p>Address: 123 Main Street, Cityville, Country</p>
-        </div>
-        <div class="image-container">
-            <img src="img/thank/Design thinking-pana.svg" alt="Contact Image">
-        </div>
-    </div> -->
-</main>
+<main></main>
 <canvas class="confetti" id="canvas"></canvas>
 
+
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Array of three texts
-        const texts = ["Thank You !", "Mail Sent Successfully", "Congratulation !"];
-        let currentIndex = 0;
+  document.addEventListener("DOMContentLoaded", function () {
+      // Create main container
+      const mainContainer = document.createElement('div');
+      mainContainer.classList.add('main-container');
 
-        function animateText() {
-            const headingContainer = document.querySelector('.heading-container');
+      // Create message container
+      const messageContainer = document.createElement('div');
+      messageContainer.classList.add('message-container');
 
-            // Create a new h1 element with the current text and heading class
-            const newHeading = document.createElement('h1');
-            newHeading.classList.add('heading');
-            newHeading.textContent = texts[currentIndex];
+      // Create image container
+      const imageContainer = document.createElement('div');
+      imageContainer.classList.add('image-container');
 
-            // Append the new h1 element to the container
-            headingContainer.appendChild(newHeading);
+      // Create image element
+      const imgElement = document.createElement('img');
+      imgElement.src = 'img/thank/Appreciation-bro.svg';
+      imgElement.alt = 'Message Image';
 
-            // After 1 second, remove the heading class and add disappear class
-            setTimeout(() => {
-                newHeading.classList.remove('heading');
-                newHeading.classList.add('disappear');
+      // Append image to image container
+      imageContainer.appendChild(imgElement);
 
-                // After 800 ms, remove the previous h1 tag and move to the next text
-                setTimeout(() => {
-                    headingContainer.removeChild(newHeading);
-                    currentIndex = (currentIndex + 1) % texts.length;
-                    animateText(); // Recursive call for the next text
-                }, 800);
-            }, 3000);
-        }
+      // Create message contents container
+      const messageContents = document.createElement('div');
+      messageContents.classList.add('message-contents');
 
-        // Start the animation
-        animateText();
-    });
+      // Create heading container
+      const headingContainer = document.createElement('div');
+      headingContainer.classList.add('heading-container');
+
+      // Append heading container to message contents
+      messageContents.appendChild(headingContainer);
+
+      // Create paragraph element
+      const paragraphElement = document.createElement('p');
+      paragraphElement.textContent = "Your message has been received. We'll get back to you as soon as possible.";
+
+      // Create button element
+      const buttonElement = document.createElement('button');
+      buttonElement.id = 'home';
+      buttonElement.innerHTML = '<i class="fa-solid fa-house-chimney-crack"></i> Home';
+      buttonElement.addEventListener('click',function(){
+        window.location.href = 'https://tanvir-abid.github.io/DevVoyager/';
+      })
+
+      // Append paragraph and button to message contents container
+      messageContents.appendChild(paragraphElement);
+      messageContents.appendChild(buttonElement);
+
+      // Append image container and message contents to message container
+      messageContainer.appendChild(imageContainer);
+      messageContainer.appendChild(messageContents);
+
+      // Append message container to main container
+      mainContainer.appendChild(messageContainer);
+
+      // Append main container to the main tag
+      document.querySelector('main').appendChild(mainContainer);
+
+      // Array of three texts
+      const texts = ["Thank You !", "Mail Sent Successfully", "Congratulation !"];
+      let currentIndex = 0;
+
+      function animateText() {
+          const headingContainer = document.querySelector('.heading-container');
+
+          // Create a new h1 element with the current text and heading class
+          const newHeading = document.createElement('h1');
+          newHeading.classList.add('heading');
+          newHeading.textContent = texts[currentIndex];
+          if(window.innerWidth <= 768){
+            if(currentIndex == 1){
+              newHeading.style.fontSize = '28px';
+            }
+          }
+
+          // Append the new h1 element to the container
+          headingContainer.appendChild(newHeading);
+
+          // After 1 second, remove the heading class and add disappear class
+          setTimeout(() => {
+              newHeading.classList.remove('heading');
+              newHeading.classList.add('disappear');
+
+              // After 800 ms, remove the previous h1 tag and move to the next text
+              setTimeout(() => {
+                  headingContainer.removeChild(newHeading);
+                  currentIndex = (currentIndex + 1) % texts.length;
+                  animateText(); // Recursive call for the next text
+              }, 800);
+          }, 3000);
+      }
+
+      // Start the text animation
+      animateText();
+  });
 </script>
 
 <script src="https://kit.fontawesome.com/5b8539d6d8.js" crossorigin="anonymous"></script>
