@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             getDataAndGenrateInitialElements();
         },300);
     }, totalDuration);
+    // getDataAndGenrateInitialElements();
 });
 
 function createTwinklingStar() {
@@ -320,7 +321,7 @@ async function getDataAndGenrateInitialElements(){
     //---------------------------------------------//
 
     createSlideshow(alldata["section-home"].slides);
-    //createAboutContainer(alldata['section-about'].texts);
+    // createAboutContainer(alldata['section-about'].texts);
     // createServicesSection(alldata['section-services'].services);
     // createPortfolioSection(alldata['section-portfolio'].projects);
     // createContactSection(alldata['section-contact']);
@@ -685,6 +686,7 @@ function createSlideshow(slidesData) {
     const slideshowContainer = document.createElement('section');
     slideshowContainer.classList.add('slideshow-container');
     slideshowContainer.id = "section-home";
+    // slideshowContainer.style.height = (window.innerHeight-50)+'px';
 
     let btnContainer = document.createElement('div')
     btnContainer.classList.add('btn-container');
@@ -950,10 +952,10 @@ function createAboutContainer(paragraphs) {
 
     // Create h1, h3, and p tags for about contents
     const aboutTitle = document.createElement('h1');
-    aboutTitle.textContent = 'About Us';
+    aboutTitle.textContent = 'About Me';
 
     const aboutSubtitle = document.createElement('h3');
-    aboutSubtitle.textContent = 'Our Story';
+    aboutSubtitle.textContent = 'My Story';
 
     const aboutParaContainer = document.createElement('div');
     aboutParaContainer.className = 'about-texts';
