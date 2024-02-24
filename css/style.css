@@ -982,8 +982,8 @@ canvas {
 }
 
 .about-contents p strong {
-    color: #030556;
     position: relative;
+    font-weight: bolder;
     transition: all 0.3s ease;
 }
 
@@ -994,7 +994,7 @@ canvas {
     bottom: 0;
     width: 0;
     height: 2px;
-    background-color: #030556;
+    background-color: #fff;
     transition: all 0.3s ease;
 }
 
@@ -2002,6 +2002,10 @@ canvas {
     white-space: nowrap;
 }
 
+.contact-info p strong{
+    margin-right: 3px;
+}
+
 .contact-info p a{
     color: #fff;
 }
@@ -2012,12 +2016,6 @@ canvas {
     border-radius: 50%;
     margin-right: 10px;
 }
-
-/* Social Media Icons */
-.contact-feature .social-media {
-    margin-top: auto;
-}
-
 
 /* Contact Form */
 .contact-form {
@@ -2088,6 +2086,11 @@ form{
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Inner box shadow */
 }
 
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: #fff;
+}
+
 /* Textarea */
 .input-group textarea {
     height: 150px; /* Set textarea height */
@@ -2096,6 +2099,10 @@ form{
 form button{
     width: 50%;
     margin: 0 auto;
+}
+
+.payment-info-container{
+    margin-top: auto;
 }
 
 .payment-methods-container {
@@ -2111,20 +2118,7 @@ form button{
     color: #fff;
     font-size: 20px;
     margin-bottom: 15px;
-}
-/* .payment-info-contents-div{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
-} */
-.payment-methods-container h4 {
-    color: #fff;
-    font-size: 18px;
-    margin-top: 15px;
-    margin-bottom: 10px;
     text-align: left;
-    text-decoration: underline;
 }
 
 .payment-list {
@@ -2134,6 +2128,8 @@ form button{
     align-items: center;
     justify-content: space-between;
     gap: 5px;
+    font-size: 10px;
+    flex-wrap: wrap;
 }
 
 .payment-list li {
@@ -2143,7 +2139,7 @@ form button{
 }
 
 .payment-list li span {
-    margin-right: 10px;
+    margin-right: 3px;
     font-size: 20px;
 }
 

@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             getDataAndGenrateInitialElements();
         },300);
     }, totalDuration);
-    // getDataAndGenrateInitialElements();
 });
 
 function createTwinklingStar() {
@@ -1056,7 +1055,7 @@ function createSkillsSection(skillData) {
 
     // Heading
     const heading = document.createElement('h1');
-    heading.textContent = skillData.heading;
+    heading.innerHTML = `<i class="fa-solid fa-screwdriver-wrench"></i> ${skillData.heading}`;
 
     // Append heading to the skills section
     skillsSection.appendChild(heading);
@@ -1717,7 +1716,7 @@ function createContactSection(contactData) {
 
     // create paymentInfo contents //
     const paymentInfoDiv = document.createElement('div');
-    paymentInfoDiv.classList.add('payment-indo-container');
+    paymentInfoDiv.classList.add('payment-info-container');
 
     const paymentDiv = generatePaymentMethodsHTML(contactData['paymentInfo']);
     paymentInfoDiv.appendChild(paymentDiv);
@@ -1748,6 +1747,10 @@ function createContactSection(contactData) {
     let mainForm = createContactForm();
     mainForm.addEventListener('submit', function(e){
         e.preventDefault();
+
+        const submitButton = mainForm.querySelector('button[type="submit"]');
+        submitButton.innerHTML = `<i class="fa-solid fa-spinner spin"></i> Submitting`;
+
         const formData = new FormData(mainForm);
         const object = Object.fromEntries(formData);
         const json = JSON.stringify(object);
@@ -1763,6 +1766,7 @@ function createContactSection(contactData) {
         .then(async (response) => {
             let json = await response.json();
             if (response.status == 200) {
+                submitButton.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Submit`;
                 window.location.href = 'https://tanvir-abid.github.io/DevVoyager/thanks.html';
             } else {
                 alert('Message not sent.');
@@ -1931,18 +1935,14 @@ function generatePaymentMethodsHTML(paymentInfo) {
     const paymentInfoContentsDiv = document.createElement('div');
     paymentInfoContentsDiv.className = "payment-info-contents-div";
 
-    if (paymentInfo.bd.length > 0) {
+    if (paymentInfo.length > 0) {
         const paymentInfoContents = document.createElement('div');
         paymentInfoContents.className = "payment-info-contents";
 
         const bdPaymentList = document.createElement('ul');
         bdPaymentList.classList.add('payment-list', 'bd-payment-list');
 
-        const bdPaymentTitle = document.createElement('h4');
-        bdPaymentTitle.textContent = 'In Bangladesh';
-        paymentInfoContents.appendChild(bdPaymentTitle);
-
-        paymentInfo.bd.forEach(method => {
+        paymentInfo.forEach(method => {
             const listItem = document.createElement('li');
             const icon = document.createElement('span');
             icon.innerHTML = method.icon;
@@ -1954,28 +1954,6 @@ function generatePaymentMethodsHTML(paymentInfo) {
         paymentInfoContentsDiv.appendChild(paymentInfoContents);
     }
 
-    if (paymentInfo.foreign.length > 0) {
-        const paymentInfoContents = document.createElement('div');
-        paymentInfoContents.className = "payment-info-contents";
-
-        const foreignPaymentList = document.createElement('ul');
-        foreignPaymentList.classList.add('payment-list', 'foreign-payment-list');
-
-        const foreignPaymentTitle = document.createElement('h4');
-        foreignPaymentTitle.textContent = 'Foreign Transactions';
-        paymentInfoContents.appendChild(foreignPaymentTitle);
-
-        paymentInfo.foreign.forEach(method => {
-            const listItem = document.createElement('li');
-            const icon = document.createElement('span');
-            icon.innerHTML = method.icon;
-            listItem.appendChild(icon);
-            listItem.appendChild(document.createTextNode(method.method));
-            foreignPaymentList.appendChild(listItem);
-        });
-        paymentInfoContents.appendChild(foreignPaymentList);
-        paymentInfoContentsDiv.appendChild(paymentInfoContents);
-    }
     paymentMethodsContainer.appendChild(paymentInfoContentsDiv);
     return paymentMethodsContainer;
 }

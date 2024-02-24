@@ -459,19 +459,19 @@
   ],
   "section-contact": {
     "heading": "Stop Scrolling, Start Building",
-    "subheading": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "subheading": "Let's build something awesome together. Your vision, my coding skills - what could be better? Drop me a line and let's discuss your project.",
     "contactInfo": {
         "email": {
             "icon": "<i class='far fa-envelope'></i>",
-            "value": "info@example.com"
+            "value": "tanviraht0@gmail.com"
         },
         "phone": {
             "icon": "<i class='fas fa-phone'></i>",
-            "value": "+1 (123) 456-7890"
+            "value": "+8801521200315"
         },
         "address": {
             "icon": "<i class='fas fa-map-marker-alt'></i>",
-            "value": "123 Main Street, Cityville, Country"
+            "value": "Dhanmondi, Dhaka, Bangladesh"
         }
     },
     "socialMedia": [
@@ -506,8 +506,7 @@
             "mediaName": "whatsapp"
         }
     ],
-    "paymentInfo": {
-      "bd": [
+    "paymentInfo": [
           {
               "icon": "<i class='fas fa-mobile-alt'></i>",
               "method": "Bkash",
@@ -527,9 +526,7 @@
             "icon": "<i class='fa-solid fa-money-bill-transfer'></i>",
             "method": "Bank Transfer",
             "number": "+8801XXXXXXXXX"
-        }
-      ],
-      "foreign": [
+        },
           {
               "icon": "<i class='fas fa-credit-card'></i>",
               "method": "Wise",
@@ -546,7 +543,7 @@
             "url": "https://www.Payoneer.com/"
         }
       ]
-  }
+  
 }
 
 
